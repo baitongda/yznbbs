@@ -6,22 +6,22 @@
 // +----------------------------------------------------------------------
 // | Author: 御宅男 <530765310@.qq.com> <http://yznbbs.applinzi.com>
 // +----------------------------------------------------------------------
+
 namespace Home\Controller;
 /**
- * 信息控制器
- * 包括主页显示文章
+ * 个人收藏关注控制器
+ * 为防止多分组Controller名称冲突，公共Controller名称统一使用分组名称
  */
-class NotificationsController extends HomeController {
-    public function index(){
-        /*
-        type类型说明 1：回复 2：@ 3：收藏 4：关注 
-        */
-        $where['id'] = $map['uid'] = is_login();
-        $list = M('Notifications') ->where($map) ->limit(10) ->order('add_time desc') ->select();
-
-        M('Member') ->where($where) ->field('unread_notifi') ->save(array('unread_notifi'=>0));
-        $this ->assign('list',$list);
+class MyController extends AuthController {
+    public function topics(){
+        $id=is_login();
+        $res=M('favourite')->where(array('uid' =>$id))->find();
+        $ids = explode(',', $res['content']);
+        if($ids){
+          $Topics = M("Topics") ->where(array('id' =>array('in',$ids))) ->order('reply_time desc') ->select();
+          $this ->assign('topics',$Topics);//列表
+        }
         $this ->display();
-      
     }
+
 }

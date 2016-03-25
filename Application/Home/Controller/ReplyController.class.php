@@ -15,11 +15,11 @@ class ReplyController extends HomeController {
     /*回复添加*/
     public function add(){
        if(IS_POST){
-          $res = D('Reply')->_add();
+          $res = D('Reply') ->_add();
           if(!$res){
-            $this->error(D('Reply')->getError());
+            $this ->error(D('Reply') ->getError());
           }else{
-            $this->success();
+            $this ->success();
           }
        }
        

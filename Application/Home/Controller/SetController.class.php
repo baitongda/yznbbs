@@ -14,33 +14,34 @@ namespace Home\Controller;
  */
 class SetController extends HomeController {
     public function index(){
-        $map['id']=is_login();
-        $user=M('Member')->where($map)->find();
-        $this->assign('user',$user);
-        $this->display();
+        _login_state();
+        $map['id'] = is_login();
+        $user = M('Member') ->where($map) ->find();
+        $this ->assign('user',$user);
+        $this ->display();
     }
     
     public function password(){
-        $pas=is_login();
+        $pas = is_login();
         if(IS_POST){
-          $res=D('Member')->_password();     
+          $res=D('Member') ->_password();     
           if(!$res){
-              $this->error(D('Member')->getError());
+              $this ->error(D('Member') ->getError());
           }else{
-              $this->success('修改成功');
+              $this ->success('修改成功');
           }
         }
 
     }
     
     public function info(){
-        $pas=is_login();
+        $pas = is_login();
         if(IS_POST){
-          $res=D('Member')->_info($pas);     
+          $res = D('Member') ->_info($pas);     
           if(!$res){
-              $this->error(D('Member')->getError());
+              $this ->error(D('Member') ->getError());
           }else{
-              $this->success('保存成功');
+              $this ->success('保存成功');
           }
         }
 

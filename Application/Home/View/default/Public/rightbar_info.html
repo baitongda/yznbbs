@@ -19,7 +19,7 @@
                 <tbody>
                 <tr>
                     <td width="33%" align="center"><a href="/my/nodes" class="dark" style="display: block;"><span class="bigger">0</span><div class="sep3"></div><span class="fade">节点收藏</span></a></td>
-                    <td width="34%" style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);" align="center"><a href="/my/topics" class="dark" style="display: block;"><span class="bigger">6</span><div class="sep3"></div><span class="fade">主题收藏</span></a></td>
+                    <td width="34%" style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);" align="center"><a href="/my/topics" class="dark" style="display: block;"><span class="bigger">{$user_info.favourite}</span><div class="sep3"></div><span class="fade">主题收藏</span></a></td>
                     <td width="33%" align="center"><a href="/my/following" class="dark" style="display: block;"><span class="bigger">3</span><div class="sep3"></div><span class="fade">特别关注</span></a></td>
                 </tr>
             </tbody>
@@ -43,6 +43,6 @@
         <div class="fr" id="money">
            <a href="/balance" class="balance_area" style="">20 <img src="//cdn.v2ex.com/static/img/silver.png" alt="S" align="absmiddle" border="0" style="padding-bottom: 2px;"> 45 <img src="//cdn.v2ex.com/static/img/bronze.png" alt="B" align="absmiddle" border="0"></a>
         </div>
-        <a href="/notifications" class="fade">{$user_info.notifi} 条未读提醒</a>
+        <a href="/notifications" class="fade">{$user_info.unread_notifi} 条未读提醒</a>
     </div>
 </div>

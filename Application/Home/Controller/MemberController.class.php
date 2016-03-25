@@ -18,9 +18,9 @@ class MemberController extends HomeController {
         if(IS_POST){ //登录检测
             $res = D('Member')->login();
             if(!$res){
-               $this->error(D('Member')->getError());
+               $this ->error(D('Member') ->getError());
             }else{
-               $this->success('登录成功！',U('Index/index'));
+               $this ->success('登录成功！',U('Index/index'));
             }          
         }
 
@@ -31,17 +31,17 @@ class MemberController extends HomeController {
         if(IS_POST){ //注册用户
           /* 检测验证码 */
 		  if(!check_verify($verify)){
-              $this->error('验证码输入错误！');
+              $this ->error('验证码输入错误！');
 		  }
           $Member = D('Member');
           if (!$data=$Member ->create()){
-                $this->error($Member->getError());
+                $this ->error($Member ->getError());
           }else{
-                $result =$Member->add();
+                $result =$Member ->add();
                 if($result){
-                    $this->success('注册成功！',U('Signin/index'));
+                    $this ->success('注册成功！',U('Signin/index'));
                 }else{
-                   $this->error($Member->getError());
+                   $this->error($Member ->getError());
                 }
           }
        }
@@ -50,14 +50,14 @@ class MemberController extends HomeController {
     
      /* 退出登录 */
 	public function logout(){
-       D('Member')->logout();
-       $this->redirect('Index/index');
+       D('Member') ->logout();
+       $this ->redirect('Index/index');
         
 	}
     
      /* 验证码，用于登录和注册 */
 	public function verify(){
 		$verify = new \Think\Verify();
-		$verify->entry();
+		$verify ->entry();
 	}
 }

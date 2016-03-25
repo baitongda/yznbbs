@@ -22,9 +22,8 @@ class HomeController extends Controller {
     protected function _initialize(){
         $id=is_login();
         if($id){
-           $user_info= M('Member')->field(array('password','content'),true)->find($id);
-            // dump($user_info);
-           $this->assign('user_info',$user_info);//列表
+           $user_info = M('Member') ->field(array('password','content'),true) ->find($id);
+           $this ->assign('user_info',$user_info);
         }
         
         

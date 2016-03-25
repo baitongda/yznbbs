@@ -7,7 +7,7 @@ namespace Home\Controller;
 class SigninController extends HomeController {
     public function index(){
         _log_reg_state();
-        $this->display();
+        $this ->display();
       
     }
 }

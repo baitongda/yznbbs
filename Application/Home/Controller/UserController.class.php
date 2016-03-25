@@ -15,12 +15,11 @@ use Org\ThinkOauth;
 class UserController extends HomeController {
     /*个人主页*/
     public function index($id){
-        $User=D('Member')->main($id);
+        $User = D('Member') ->main($id);
         if(!$User){
-			$this->error( D('Member')->getError());
+			$this ->error( D('Member') ->getError());
 		}
-        // dump($User);
-        $this->assign('user',$User);//列表
-        $this->display(); 
+        $this ->assign('user',$User);
+        $this ->display(); 
     }
 }

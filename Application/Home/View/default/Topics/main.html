@@ -25,9 +25,13 @@
         <if condition="is_login()">
            <div class="topic_buttons">
                <div class="fr gray f11" style="line-height: 12px; padding-top: 3px; text-shadow: 0px 1px 0px #fff;">
-                   {$topics.view} 次浏览 &nbsp;∙&nbsp; 1 人收藏 &nbsp; 
+                   {$topics.view} 次浏览 &nbsp;∙&nbsp; {$topics.favourite} 人收藏 &nbsp; 
                </div>
-               <a href="/favorite/topic/263649?t=kimmyucfujixxeohnuvqfxraenbwcndc" class="tb">加入收藏</a> &nbsp;
+               <empty name="topics.in_favorites">
+                    <a href="{:U('Favourite/add?id='.$topics['id'])}" class="tb">加入收藏</a> &nbsp;
+               <else /> 
+                     <a href="{:U('Favourite/del?id='.$topics['id'])}" class="tb">取消收藏</a> &nbsp;
+               </empty> 
                <a href="#;" onclick="window.open('https://twitter.com/share?url=http://www.v2ex.com/t/263649?r\u003Dken678&amp;related=v2ex&amp;hashtags=linux&amp;text=集群内的任务分发，有什么推荐的方案？', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'twitter.com');" class="tb">Tweet</a> &nbsp;
                <a href="#;" onclick="window.open('http://service.weibo.com/share/share.php?url=http://www.v2ex.com/t/263649?r\u003Dken678&amp;title=V2EX%20-%20集群内的任务分发，有什么推荐的方案？', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');" class="tb">Weibo</a> &nbsp;
                <a href="#;" onclick="if (confirm('确定不想再看到这个主题？')) { location.href = '/ignore/topic/263649?once=79889'; }" class="tb">忽略主题</a> &nbsp;
