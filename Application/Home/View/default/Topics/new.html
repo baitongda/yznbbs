@@ -1,0 +1,36 @@
+<div id="Main">
+                <div class="sep20"></div>
+                
+<div class="box" id="box">
+    <div class="cell"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 创作新主题</div>
+    <form method="post" action="/Topics/add" id="compose">
+    <input type="hidden" value="{$topics.id}" name="id">
+    <div class="cell"><div class="fr fade" id="title_remaining">120</div>
+        主题标题
+    </div>
+    <div class="cell" style="padding: 0px; background-color: #fff;"><textarea class="msl" rows="1" maxlength="120" id="topic_title" name="title" autofocus="autofocus" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空"></textarea></div>
+    <div class="cell"><div class="fr fade" id="content_remaining">20000</div>
+        正文
+    </div>
+    <div style="text-align: left; border-bottom: 1px solid #e2e2e2; font-size: 14px; line-height: 120%;"><textarea maxlength="20000" id="editor" name="content"></textarea></div>         
+    <div class="cell">
+        <select name="nid" id="nodes" style="width: 300px; font-size: 14px;" data-placeholder="请选择一个节点">
+            <volist name="node" id="vo">
+                <option value="{$vo.id}">{$vo.pid|get_node} / {$vo.title}</option>
+            </volist>
+            
+            
+        </select>
+    </div>
+    <div class="cell">
+    最热节点 &nbsp; <a href="javascript:chooseNode('qna')" class="node">问与答</a> &nbsp;<a href="javascript:chooseNode('all4all')" class="node">二手交易</a> &nbsp;<a href="javascript:chooseNode('share')" class="node">分享发现</a> &nbsp;<a href="javascript:chooseNode('jobs')" class="node">酷工作</a> &nbsp;<a href="javascript:chooseNode('programmer')" class="node">程序员</a> &nbsp;<a href="javascript:chooseNode('macosx')" class="node">Mac OS X</a> &nbsp;<a href="javascript:chooseNode('create')" class="node">分享创造</a> &nbsp;<a href="javascript:chooseNode('python')" class="node">Python</a> &nbsp;<a href="javascript:chooseNode('shadowsocks')" class="node">shadowsocks</a> &nbsp;<a href="javascript:chooseNode('iphone')" class="node">iPhone</a> &nbsp;<a href="javascript:chooseNode('in')" class="node">分享邀请码</a> &nbsp;
+    </div>
+    <input type="hidden" name="content" value="" id="topic_content">
+    <input type="hidden" name="once" value="43537">
+    </form>
+    <div class="cell"><div class="fr"><span id="error_message"></span> &nbsp; <button type="button" class="super normal button" onclick="publishTopic();"><li class="fa fa-paper-plane"></li> &nbsp;发布主题</button></div>
+        <button class="super normal button" onclick="previewTopic();"><li class="fa fa-eye"></li> &nbsp;预览主题</button>
+    </div>
+</div>
+
+            </div>

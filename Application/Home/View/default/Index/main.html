@@ -1,0 +1,19 @@
+<div id="Main">
+    <div class="sep20"></div>
+    <div class="box">
+        {:W('Node/index',array(I('get.id',0,'intval')))} 
+        <!--帖子列表-->
+        <volist name="topics" id="vo">
+          <include file="Public/main_topics" />
+        </volist>
+        <!--帖子列表-->
+        <div class="inner">
+            <div class="fr">
+                <a href="/feed/tab/tech.xml" target="_blank"><img src="/static/img/rss.png" align="absmiddle" style="margin-top:-3px;" border="0"></a>&nbsp; 
+                <a href="/feed/tab/tech.xml" target="_blank">通过 Atom Feed 订阅</a>
+            </div>
+        <span class="chevron">→</span> <a href="/recent">更多新主题</a>
+        </div>
+    </div>
+    <div class="sep20"></div>
+</div>

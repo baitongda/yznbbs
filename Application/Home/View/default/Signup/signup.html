@@ -1,0 +1,34 @@
+<div id="Main">
+<div class="sep20"></div>
+<div class="box">
+    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 注册</div>
+    <div class="inner">
+        <form id="register" method="post" action="/Member/register">
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+        <tbody>
+            <tr>
+                <td width="120" align="right" valign="top"><div class="sep5"></div>用户名</td>
+                <td width="auto" align="left"><input type="text" class="sl" name="username" value="" autocorrect="off" spellcheck="false" autocapitalize="off"><div class="sep5"></div><span class="fade">请使用半角的 a-z 或数字 0-9</span></td>
+            </tr>
+            <tr>
+                <td width="120" align="right">密码</td>
+                <td width="auto" align="left"><input type="password" class="sl" name="password" value="" autocorrect="off" spellcheck="false" autocapitalize="off"></td>
+            </tr>
+            <tr>
+                <td width="120" align="right" valign="top"><div class="sep5"></div>电子邮件</td>
+                <td width="auto" align="left"><input type="email" class="sl" name="email" value="" autocorrect="off" spellcheck="false" autocapitalize="off"><div class="sep5"></div><span class="fade">请使用真实电子邮箱注册，我们不会将你的邮箱地址分享给任何人</span></td>
+            </tr>
+            <tr>
+                <td width="120" align="right">你是机器人么？</td>
+                <td width="auto" align="left"><img class="captcha" src="{:U('Member/verify')}" style="width: 320px; height: 80px; border-radius: 3px; border: 1px solid #ccc;"><div class="sep10"></div><input type="text" class="sl" name="verify" value="" autocorrect="off" spellcheck="false" autocapitalize="off" placeholder="请输入上图中的验证码"></td>
+            </tr>
+            <tr>
+                <td width="120" align="right"></td>
+                <td width="auto" align="left"><input type="submit" class="super normal button" value="注册"></td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+</div>
+</div>

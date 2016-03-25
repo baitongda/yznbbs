@@ -1,0 +1,33 @@
+<div id="Main">
+                <div class="sep20"></div>
+                
+<div class="box">
+    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/go/qna">问与答</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/t/263938">{$topics.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> 编辑主题</div>
+    
+    <div class="cell">
+        <form method="post" action="" id="topic_form">
+        <input type="hidden" value="{$topics.id}" name="id">
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+            <tbody><tr>
+                <td><textarea class="mle" name="title">{$topics.title}</textarea></td>
+            </tr>
+            <tr>
+                <td><textarea class="mle tall" name="content" id="topic_content">{$topics.content}</textarea></td>
+            </tr>
+            <tr>
+                <td><div class="fr"><select name="syntax" id="syntax" class="super normal button editor_syntax" style="display: none;"><option value="0">Default</option><option value="1" selected="selected">Markdown</option></select><span id="syntaxSelectBoxItContainer" class="selectboxit-container selectboxit-container" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" aria-owns="syntaxSelectBoxItOptions"><span id="syntaxSelectBoxIt" class="selectboxit super normal button editor_syntax selectboxit-enabled selectboxit-btn" name="syntax" tabindex="0" unselectable="on" style="width: 103px;"><span class="selectboxit-option-icon-container"><i id="syntaxSelectBoxItDefaultIcon" class="selectboxit-default-icon selectboxit-option-icon selectboxit-container" unselectable="on"></i></span><span id="syntaxSelectBoxItText" class="selectboxit-text" unselectable="on" data-val="1" aria-live="polite" style="max-width: 80px;">Markdown</span><span id="syntaxSelectBoxItArrowContainer" class="selectboxit-arrow-container" unselectable="on"><i id="syntaxSelectBoxItArrow" class="selectboxit-arrow selectboxit-default-arrow" unselectable="on"></i></span></span><ul id="syntaxSelectBoxItOptions" class="selectboxit-options selectboxit-list" tabindex="-1" role="listbox" aria-hidden="true" style="min-width: 103px;"><li data-id="0" data-val="0" data-disabled="false" class="selectboxit-option  selectboxit-option-first" role="option"><a class="selectboxit-option-anchor"><span class="selectboxit-option-icon-container"><i class="selectboxit-option-icon  selectboxit-container"></i></span>Default</a></li><li data-id="1" data-val="1" data-disabled="false" class="selectboxit-option  selectboxit-option-last selectboxit-selected" role="option"><a class="selectboxit-option-anchor"><span class="selectboxit-option-icon-container"><i class="selectboxit-option-icon  selectboxit-container"></i></span>Markdown</a></li></ul></span><span class="editor_syntax_label_left">文本标记语法</span><span style="clean: both;"></span><script type="text/javascript">$(function(){ $("select").selectBoxIt();});</script></div><input type="submit" value="保存" class="super normal button"></td>
+            </tr>
+        </tbody></table>
+        <script type="text/javascript">
+        $("#topic_content").keydown(function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.which === 13) {
+                e.preventDefault();
+                $("#topic_form").submit();
+            }
+        });
+        </script>
+        </form>
+    </div>
+</div>
+
+            </div>

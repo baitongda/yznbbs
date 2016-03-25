@@ -1,0 +1,29 @@
+<div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">   
+    <a class="tab" href="/">全部</a>
+    <volist name="cata.top" id="vo">       
+            <a class="tab" href="{:U('Node/index?id='.$vo['id'])}">{$vo.title}</a>
+    </volist>    
+</div>
+<div id="con">
+    <div class="cell"  style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+        <volist name="cata.bot" id="vo">
+            <a  href="{:U('Node/index?id='.$vo['id'])}">{$vo.title}</a>&nbsp; &nbsp;
+        </volist>
+    </div>
+</div>
+<script type="text/javascript">
+     $(document).ready(function(){       
+         $(".inner a.tab").eq({$current}).addClass("tab_current").siblings().removeClass('tab_current');
+         if($(".inner a.tab").hasClass("tab_current")){
+              $(".inner a.tab:first").removeClass("tab_current");                
+         }else{
+              $(".inner a.tab:first").addClass("tab_current");                 
+         }                      
+     
+         
+                              // $(".inner a.tab").click(function(){
+                              // $(".inner a.tab").eq({$current}).addClass("tab_current").siblings().removeClass('tab_current');
+            // $("#con .cell").eq($(this).index()).show().siblings().hide();
+                              // });
+    });
+</script>

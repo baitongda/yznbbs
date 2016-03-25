@@ -1,0 +1,124 @@
+<div id="Main">
+    
+    <!--帖子详情-->     
+    <div class="sep20"></div>    
+    <div class="box" style="border-bottom: 0px;">
+        <div class="header">
+            <div class="fr"><a href="/member/timchou"><img src="{$topics.uid|get_avatar=###,'73'}" class="avatar" border="0" align="default"></a></div>
+            <a href="/">YznBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/go/linux">{$topics.nid|get_node}</a>
+            <div class="sep10"></div>
+            <h1>{$topics.title}</h1>
+            <div id="topic_263649_votes" class="votes">
+                <a href="javascript:" onclick="upVoteTopic(263649);" class="vote"><li class="fa fa-chevron-up"></li></a> &nbsp;<a href="javascript:" onclick="downVoteTopic(263649);" class="vote"><li class="fa fa-chevron-down"></li></a>
+            </div> &nbsp; 
+            <small class="gray">
+                <a href="{:U('User/index?id='.$topics['uid'])}">{$topics.uid|get_username}</a> · {$topics.add_time|check_time}前 · {$topics.view} 次浏览 &nbsp; 
+                <!--判断编辑修改-->
+                <equal name="topics.uid" value="$Think.session.user_auth.id"><a href="{:U('Topics/edit?id='.$topics['id'])}" class="op">MOVE</a> &nbsp;<a href="{:U('Topics/edit?id='.$topics['id'])}" class="op">编辑</a></equal>
+                <!--判断编辑修改-->
+            </small>
+        </div>
+        <div class="cell">
+        <div class="topic_content">{$topics.content|htmlspecialchars_decode|resolve_markdown}</div>
+        </div>
+        <!--帖子详情顶部选项-->
+        <if condition="is_login()">
+           <div class="topic_buttons">
+               <div class="fr gray f11" style="line-height: 12px; padding-top: 3px; text-shadow: 0px 1px 0px #fff;">
+                   {$topics.view} 次浏览 &nbsp;∙&nbsp; 1 人收藏 &nbsp; 
+               </div>
+               <a href="/favorite/topic/263649?t=kimmyucfujixxeohnuvqfxraenbwcndc" class="tb">加入收藏</a> &nbsp;
+               <a href="#;" onclick="window.open('https://twitter.com/share?url=http://www.v2ex.com/t/263649?r\u003Dken678&amp;related=v2ex&amp;hashtags=linux&amp;text=集群内的任务分发，有什么推荐的方案？', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'twitter.com');" class="tb">Tweet</a> &nbsp;
+               <a href="#;" onclick="window.open('http://service.weibo.com/share/share.php?url=http://www.v2ex.com/t/263649?r\u003Dken678&amp;title=V2EX%20-%20集群内的任务分发，有什么推荐的方案？', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');" class="tb">Weibo</a> &nbsp;
+               <a href="#;" onclick="if (confirm('确定不想再看到这个主题？')) { location.href = '/ignore/topic/263649?once=79889'; }" class="tb">忽略主题</a> &nbsp;
+               <div id="topic_thank">
+                   <a href="#;" onclick="if (confirm('你确定要向本主题创建者发送谢意？')) { thankTopic(263649, 'kimmyucfujixxeohnuvqfxraenbwcndc'); }" class="tb">感谢</a>
+               </div>
+           </div>
+        </if> 
+        <!--帖子详情顶部选项-->
+    </div>
+    <!--帖子详情-->
+        
+    <!--回复列表-->  
+    <div class="sep20"></div>  
+    <neq name="topics.reply_count" value="0"> 
+    <div class="box">
+        <div class="cell">
+            <div class="fr" style="margin: -3px -5px 0px 0px;">
+            <a href="/tag/Celery" class="tag"><li class="fa fa-tag"></li> Celery</a>
+            <a href="/tag/worker" class="tag"><li class="fa fa-tag"></li> worker</a>
+            <a href="/tag/Server" class="tag"><li class="fa fa-tag"></li> Server</a>
+            <a href="/tag/service" class="tag"><li class="fa fa-tag"></li> service</a>
+            </div>
+            <span class="gray">{$topics.reply_count} 回复 &nbsp;<strong class="snow">|</strong> &nbsp;直到 {$topics.reply_time|time_format}</span>
+        </div>   
+        <volist name="topics.reply" id="vo">
+            <div id="r_2985418" class="cell">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td width="48" valign="top" align="center"><img src="{$vo.uid|get_avatar=###,'48'}" class="avatar" border="0" align="default"></td>
+                        <td width="10" valign="top"></td>
+                        <td width="auto" valign="top" align="left">
+                            <div class="fr">
+                                <div id="thank_area_2985418" class="thank_area">
+                                    <a href="#;" onclick="if (confirm('确认要不再显示来自 @lecher 的这条回复？')) { ignoreReply(2985418, '79889'); }" class="thank" style="color: #ccc;">隐藏</a> &nbsp; &nbsp; &nbsp; 
+                                    <a href="#;" onclick="if (confirm('确认花费 10 个铜币向 @lecher 的这条回复发送感谢？')) { thankReply(2985418, 'kimmyucfujixxeohnuvqfxraenbwcndc'); }" class="thank">感谢回复者</a>
+                                </div> &nbsp; 
+                                <a href="#;" onclick="replyOne('{$vo.uid|get_username}');">
+                                    <img src="//cdn.v2ex.com/static/img/reply.png" align="absmiddle" border="0" alt="Reply">
+                                </a> &nbsp;&nbsp; 
+                                <span class="no">{$key+1}</span></div>
+                        <div class="sep3"></div>
+                        <strong><a href="{:U('User/index?id='.$vo['uid'])}" class="dark">{$vo.uid|get_username}</a></strong>&nbsp; &nbsp;<span class="fade small">{$vo.add_time|check_time}前</span> 
+                        <div class="sep5"></div>
+                        <div class="reply_content">{$vo.content}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </volist>
+    </div>
+    <else/>   
+      <div class="box transparent">
+        <div class="inner" style="text-align: center">
+          <span style="color: rgba(0, 0, 0, 0.25);">目前尚无回复</span>
+        </div>
+      </div>
+    </neq>
+    <!--回复列表-->     
+
+    <!--回复框--> 
+    <if condition="is_login()">
+    <div class="sep20"></div>
+    <div class="box">
+        <div class="cell"><div class="fr"><a href="#"><strong>↑</strong> 回到顶部</a></div>添加一条新回复</div>
+            <div class="cell">
+            <form method="post" action="/Reply/add">
+                <input type="hidden" value="{$topics.id}" name="topics_id">
+                <textarea name="content" maxlength="10000" class="mll" id="reply_content" style="overflow: hidden; word-wrap: break-word; resize: none; height: 112px;"></textarea>
+                <div class="sep10"></div>
+                <div class="fr"><div class="sep5"></div><span class="gray">请尽量让自己的回复能够对别人有帮助</span></div>
+                <input type="hidden" value="79889" name="once">
+                <input type="submit" value="回复" class="super normal button">
+                    <script type="text/javascript">
+                        $("#reply_content").keydown(function(e) {
+                        if ((e.ctrlKey || e.metaKey) && e.which === 13) {
+                        e.preventDefault();
+                        $("#reply_content").parent().submit();
+                        }
+                        });
+                    </script>
+            </form>
+            </div>
+        <div class="inner">
+        <div class="fr"><a href="/">← V2EX</a></div>
+        &nbsp;
+        </div>
+    </div>
+    </if> 
+    <!--回复框--> 
+
+</div>
