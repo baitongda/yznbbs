@@ -28,7 +28,8 @@
 - ~~商城~~  
 .....  
 
-
+##演示地址
+http://yznbbs.applinzi.com/
 
 
 
