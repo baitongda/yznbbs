@@ -30,9 +30,11 @@ class TopicsController extends HomeController {
     /* 发布帖子 */
     public function add(){
         _login_state();
-        $res=D('Node')->detail();
+        $res['list']=D('Node')->detail('list');
+        $res['hot']=D('Node')->detail('hot');
+        
         if(IS_POST){
-          $res = D('Topics')->update();
+          $res = D('Topics')->_add();
           if(!$res){
             $this->error(D('Topics')->getError());
           }else{
@@ -53,7 +55,7 @@ class TopicsController extends HomeController {
             $this ->error("你无权编辑其他用户帖子");
         }
         if(IS_POST){
-          $res = D('Topics') ->update();
+          $res = D('Topics') ->_save($id);
           if(!$res){
             $this ->error(D('Topics') ->getError());
           }else{

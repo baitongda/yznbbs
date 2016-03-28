@@ -8,12 +8,28 @@ class NodeModel extends Model {
 	 * @param  integer $id 文档ID
 	 * @return array       详细数据
 	 */
-	public function detail(){
-		/* 获取基础数据 */
+	public function detail($type='list'){
+		/* 获取基础数据 */   
         $map['pid']  = array('neq',0);
-        $res=$this->where($map)->select();
-        return $res;
-
+        switch ($type){
+           case "list":
+           $res=$this->where($map)->select();
+           return $res; 
+           break;
+            
+           case "hot":
+           $res=$this->where($map)->cache('cache_hot_node',600)->limit(10)->select();
+           return $res;
+           break;
+       }
+        
+        
+        
+        
+        
+        
+        
+        
 	}
     
    

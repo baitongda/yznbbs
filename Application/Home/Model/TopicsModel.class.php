@@ -39,14 +39,55 @@ class TopicsModel extends Model {
         return array_merge($Topics, $Reply);
 	}
     
+    public function _save($id,$data = null){
+        /* 获取数据对象 */
+        $data = $this->create($data);
+        if(empty($data)){
+            return false;
+        }
+        if($data['uid']==0){
+            $this->error = '非法参数，用户签名不正确！';
+            return false;
+        }
+        $status = $this->save(); //更新基础内容
+        if(false === $status){
+             $this->error = '编辑帖子出错！';
+             return false;
+        }
+        return $status;
+    }
+    
+    public function _add($data = null){
+        /* 获取数据对象 */
+        $data = $this->create($data,Model::MODEL_INSERT);
+        if(empty($data)){
+            return false;
+        }
+        if($data['uid']==0){
+            $this->error = '非法参数，用户签名不正确！';
+            return false;
+        }
+        if(empty($data['nid'])){
+            $this->error = '板块不得为空！';
+             return false;
+        }
+        $status = $this->add(); //添加基础内容
+        if(!$status){
+           $this->error = '发帖失败！';
+           return false;
+        }
+        return $status;
+    }
+    
+    
     /**
      * 新增或更新一个文档
      * @param array  $data 手动传入的数据
      * @return boolean fasle 失败 ， int  成功 返回完整的数据
      * @author huajie <banhuajie@163.com>
      */
-    public function update($data = null){
-        /* 获取数据对象 */
+    /*public function update($data = null){
+
         $data = $this->create($data);
         if(empty($data)){
             return false;
@@ -55,14 +96,19 @@ class TopicsModel extends Model {
                 $this->error = '非法参数，用户签名不正确！';
                 return false;
         }
-        /* 添加或新增基础内容 */
-        if(empty($data['id'])){ //新增数据
+
+        if(empty($data['id'])&$data['id']!=0){ //新增数据
+            if(empty($data['nid'])){
+              $this->error = '板块不得为空！';
+               return false;
+            }
             $status = $this->add(); //添加基础内容
             if(!$status){
                 $this->error = '发帖失败！';
                 return false;
             }
         } else { //更新数据
+            
             $status = $this->save(); //更新基础内容
             if(false === $status){
                 $this->error = '编辑帖子出错！';
@@ -71,6 +117,6 @@ class TopicsModel extends Model {
         }
         
         return $status;
-    }
+      }*/
 
 }
