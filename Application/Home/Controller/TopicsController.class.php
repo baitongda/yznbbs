@@ -17,12 +17,15 @@ class TopicsController extends HomeController {
     public function index($id){
         $Topics= D('Topics')->detail($id);
         if(!$Topics){
-			$this->error( D('Topics')->getError());
-		}
+            $this->error( D('Topics')->getError());
+        }
         
         // 判断是不是已被收藏
-	    $Topics['in_favorites']=D('Favourite')->is_favorite($id);
-        
+        $Topics['in_favorites']=D('Favourite')->is_favorite($id);
+        if(!empty($Topics['tags'])){
+            $Topics['tags']= explode(',',$Topics['tags']);
+        }
+
         $this ->assign('topics',$Topics);//列表
         $this ->display(); 
     }
@@ -36,9 +39,9 @@ class TopicsController extends HomeController {
         if(IS_POST){
           $res = D('Topics')->_add();
           if(!$res){
-            $this->error(D('Topics')->getError());
+             $this->error(D('Topics')->getError());
           }else{
-            $this->success('发布成功',U('Topics/index?id='.$res));
+             $this->success('发布成功',U('Topics/index?id='.$res));
           }
         }else{
           $this ->assign('node',$res);//列表   
@@ -55,15 +58,15 @@ class TopicsController extends HomeController {
             $this ->error("你无权编辑其他用户帖子");
         }
         if(IS_POST){
-          $res = D('Topics') ->_save($id);
-          if(!$res){
-            $this ->error(D('Topics') ->getError());
-          }else{
-            $this ->success('编辑成功',U('Topics/index?id='.$id));
-          }
+            $res = D('Topics') ->_save($id);
+            if(!$res){
+               $this ->error(D('Topics') ->getError());
+            }else{
+               $this ->success('编辑成功',U('Topics/index?id='.$id));
+            }
         }else{
-          $this ->assign('topics',$Topics);//列表
-          $this ->display();   
+           $this ->assign('topics',$Topics);//列表
+           $this ->display();   
         }
     }
 
