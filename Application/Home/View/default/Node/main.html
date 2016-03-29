@@ -1,0 +1,31 @@
+<div id="Main">
+    <div class="sep20"></div>
+    <div class="box">
+        <div class="header">
+            <div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: initial!important;">
+                <img src="//cdn.v2ex.co/navatar/6353/8fe6/519_large.png?m=1424694533" border="0" align="default" width="auto"></div>
+            <div class="fr f12">
+                <span class="snow">主题总数</span> <strong class="gray">1769</strong> <span class="snow">&nbsp;•&nbsp;</span> 
+                <a href="/favorite/node/519?t=1441577065">加入收藏</a>
+            </div>
+            <a href="/">YznBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> {$topcata.title}
+            <div class="sep10"></div>
+            <span class="f12 gray">{$topcata.description}</span>
+              <div class="sep10"></div>
+              <input type="button" class="super normal button" value="创建新主题" onclick="location.href = '/new/ideas';">
+         </div>
+        <!--帖子列表-->
+        <volist name="topics" id="vo">
+          <include file="Public/main_topics" />
+        </volist>
+        <!--帖子列表-->
+        <div class="inner">
+            <div class="fr">
+                <a href="/feed/tab/tech.xml" target="_blank"><img src="/static/img/rss.png" align="absmiddle" style="margin-top:-3px;" border="0"></a>&nbsp; 
+                <a href="/feed/tab/tech.xml" target="_blank">通过 Atom Feed 订阅</a>
+            </div>
+        <span class="chevron">→</span> <a href="/recent">更多新主题</a>
+        </div>
+    </div>
+    <div class="sep20"></div>
+</div>

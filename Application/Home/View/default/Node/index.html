@@ -1,19 +1,23 @@
 <extend name="Public/base" />
 <block name="meta">
-    <title>{:C('WEB_SITE_TITLE')} › 设置</title>
+    <title>{:C('WEB_SITE_TITLE')} › {$topcata.title}</title>
     <meta name="keywords" content="{:C('WEB_SITE_KEYWORD')}" />
 	<meta name="description" content="{:C('WEB_SITE_DESCRIPTION')}" />   
 </block>
 <block name="head"></block>
 <block name="header"><include file="Public/header" /></block>
 <block name="wrap">
-      <div id="Rightbar">
-       <if condition="is_login()">
+    <div id="Rightbar">
+      <if condition="is_login()">
             <include file="Public/rightbar_info" />
          <else/>
             <include file="Public/rightbar_login" />
       </if>
-      </div>
-     <include file="Set/main" />
+      <include file="Public/rightbar_hot_topcis" />
+      <include file="Public/rightbar_hot_node" />
+      <include file="Public/rightbar_new_node" />
+      <include file="Public/rightbar_status" />
+    </div>
+    <include file="Node/main" />
 </block>
 <block name="footer"><include file="Public/footer" /></block>
