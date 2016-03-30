@@ -1,0 +1,19 @@
+<extend name="Public/base" />
+<block name="meta">
+    <title>{:C('WEB_SITE_TITLE')} › {$tag_title}</title>
+    <meta name="keywords" content="{:C('WEB_SITE_KEYWORD')}" />
+	<meta name="description" content="{:C('WEB_SITE_DESCRIPTION')}" />   
+</block>
+<block name="head"></block>
+<block name="header"><include file="Public/header" /></block>
+<block name="wrap">
+    <div id="Rightbar">
+      <if condition="is_login()">
+            <include file="Public/rightbar_info" />
+         <else/>
+            <include file="Public/rightbar_login" />
+      </if>
+    </div>
+    <include file="Tags/main" />
+</block>
+<block name="footer"><include file="Public/footer" /></block>

@@ -34,7 +34,7 @@ class HomeController extends Controller {
 
         $id=is_login();
         if($id){
-           $user_info = M('Member') ->field(array('password','content'),true) ->find($id);
+           $user_info = M('Member')  ->find($id);
            $this ->assign('user_info',$user_info);
         }
         

@@ -25,13 +25,13 @@ class NodeController extends HomeController {
             $childcata=M('Node') ->where($map) ->getField('id',true);//获取父节点下面的子节点
 
             $map = array('nid' => array('in',array_values($childcata)));
-            $Topics =M("Topics") ->where($map) ->order('reply_time desc') ->select();
+            $Topics =M("Topics") ->where($map) ->order('is_top desc,reply_time desc') ->select();
             $this ->assign('current',$topcata['id']);//列表
             $this ->assign('topics',$Topics);//列表
             $this ->display('Index:index');
         }else{
             $map = array('nid' => $id);
-            $Topics =M("Topics") ->where($map) ->order('reply_time desc') ->select();
+            $Topics =M("Topics") ->where($map) ->order('is_top desc,reply_time desc') ->select();
             $this ->assign('current',$topcata['id']);//列表
             $this ->assign('topics',$Topics);//列表
             $this ->assign('topcata',$topcata);//列表

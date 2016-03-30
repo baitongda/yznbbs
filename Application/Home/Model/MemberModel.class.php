@@ -91,7 +91,7 @@ class MemberModel extends Model {
             $this->error = '用户不存在或者被删除！';
             return false;
         }
-        $user['topics'] = M('Topics')->where(array('uid' => $id))->limit(10)->select();
+        $user['topics'] = M('Topics')->where(array('uid' => $id))->order('is_top desc,reply_time desc') ->limit(10)->select();
         $field='t.id as t_id,t.uid,r.id as r_id,t.title,r.content,r.add_time';
         $user['reply']  = M('Reply')->alias('r')->join('LEFT JOIN yzn_topics t ON t.id = r.topics_id')->field($field)->where(array('r.uid' => $id))->limit(10)->select();
         return $user;

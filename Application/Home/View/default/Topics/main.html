@@ -51,7 +51,7 @@
         <div class="cell">
             <div class="fr" style="margin: -3px -5px 0px 0px;">
                  <foreach name="topics.tags" item="vo">
-                     <a href="/tag/Celery" class="tag"><li class="fa fa-tag"></li> {$vo}</a>
+                     <a href="{:U('Tags/index?show='.$vo)}" class="tag"><li class="fa fa-tag"></li> {$vo}</a>
                  </foreach>
             </div>
             <span class="gray">{$topics.reply_count} 回复 &nbsp;<strong class="snow">|</strong> &nbsp;直到 {$topics.reply_time|time_format}</span>
@@ -95,7 +95,7 @@
       <div class="box">
           <div class="inner">
               <foreach name="topics.tags" item="vo">
-                  <a href="/tag/私活" class="tag">{$vo}</a>
+                  <a href="{:U('Tags/index?show='.$vo)}" class="tag">{$vo}</a>
               </foreach>
           </div>
       </div>

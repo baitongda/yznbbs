@@ -74,6 +74,8 @@ class TopicsModel extends Model {
            $this->error = '发帖失败！';
            return false;
         }
+        //储存tags
+        $this->insert_tag($data['tags'],$status);
         return $status;
     }
     
@@ -127,6 +129,29 @@ class TopicsModel extends Model {
 		return false;
 	}
     
+    //入库Tag
+	protected function insert_tag($data,$topics_id)
+	{
+		if(!empty($data)){
+			$arr = explode(',',$data);
+			if(is_array($arr)){
+				foreach( $arr as $k => $v ){
+                   $info=M('Tags')->where(array('title' =>$v))->find();
+                   if(empty($info)){
+                      $res= M('Tags') ->add(array('title' =>$v));
+                       M('Tags_relation') ->add(array('tag_id' =>$res,'topics_id' =>$topics_id));
+				   } else{
+                       M('tags') ->where(array('id' =>$info['id']))->setInc('count');
+                       $info_relation= M('Tags_relation')->where(array('tag_id' =>$info['id'],'topics_id' =>$topics_id))->find();
+                       if(empty($info_relation)){
+                           M('Tags_relation') ->add(array('tag_id' =>$info['id'],'topics_id' =>$topics_id));
+					   }
+				   }
+				}
+			}
+			return true;
+		}
+	} 
     
 
 }

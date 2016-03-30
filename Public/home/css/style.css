@@ -1597,3 +1597,46 @@ a.btn_hero:hover {
     border: 1px solid #e2e2e2;
     padding: 6px 10px 6px 10px;
 }
+
+[class*=icon-sn-] {
+display: inline-block;
+background-image: url(https://sf-static.b0.upaiyun.com/v-56fa5b80/global/img/social-icons/icon-sn.svg);
+background-repeat: no-repeat;
+width: 28px;
+height: 28px;
+vertical-align: middle;
+border-radius: 2px;
+background-size: auto 56px;
+}
+
+.visible-xs-inline{
+display: none!important;
+}
+
+.icon-sn-bg-qq {
+background-color: #0098e6;
+background-position: -84px 0;
+}
+
+.icon-sn-bg-weibo {
+background-color: #e90d24;
+background-position: -56px 0;
+}
+
+
+.btn {
+display: inline-block;
+margin-bottom: 0;
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+border: 1px solid transparent;
+white-space: nowrap;
+font-size: 14px;
+line-height: 1.5;
+border-radius: 3px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+}
