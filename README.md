@@ -1,4 +1,5 @@
- ##说明）
+# yznbbs论坛
+ ## 说明
  - 采用最新TP3.2.3框架
  - 使用sae作为服务器
  - 注册地址http://t.cn/R4ppkMF
@@ -27,6 +28,6 @@
   - ~~商城~~  
   .....  
   
- -
- +##演示地址
- +http://yznbbs.applinzi.com/
+ 
+ ##演示地址
+ http://yznbbs.applinzi.com/
