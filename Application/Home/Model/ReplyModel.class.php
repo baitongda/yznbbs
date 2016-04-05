@@ -104,6 +104,9 @@ class ReplyModel extends Model {
                 /*写入发帖时间，用于后面防灌水*/
                 set_spam($data['uid']);
                 
+                //记录行为
+                action_log('replay', 'reply',$id,$data['uid']);
+                
             }
         }
         return $data;

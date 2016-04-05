@@ -1,29 +1,29 @@
-<div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">   
-    <a class="tab" href="/">全部</a>
+<div class="inner" id="project" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">   
     <volist name="cata.top" id="vo">       
-            <a class="tab" href="{:U('Node/index?id='.$vo['id'])}">{$vo.title}</a>
-    </volist>    
+        <a class="tab" href="javascript:;">{$vo.title}</a>
+    </volist>  
+    <a class="tab_current" href="/">全部</a>
 </div>
+
 <div id="con">
+    <foreach name="cata.child" item="vo" key="k" >
     <div class="cell"  style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
-        <volist name="cata.bot" id="vo">
-            <a  href="{:U('Node/index?id='.$vo['id'])}">{$vo.title}</a>&nbsp; &nbsp;
-        </volist>
+        <foreach name="vo" item="to" key="k" > 
+           <a  href="{:U('Node/index?id='.$to['id'])}">{$to.title}</a>&nbsp; &nbsp;
+        </foreach> 
     </div>
+    </foreach> 
 </div>
 <script type="text/javascript">
-     $(document).ready(function(){       
-         $(".inner a.tab").eq({$current}).addClass("tab_current").siblings().removeClass('tab_current');
-         if($(".inner a.tab").hasClass("tab_current")){
-              $(".inner a.tab:first").removeClass("tab_current");                
-         }else{
-              $(".inner a.tab:first").addClass("tab_current");                 
-         }                      
-     
-         
-                              // $(".inner a.tab").click(function(){
-                              // $(".inner a.tab").eq({$current}).addClass("tab_current").siblings().removeClass('tab_current');
-            // $("#con .cell").eq($(this).index()).show().siblings().hide();
-                              // });
+$(function(){
+    $("#project a").each(function(number) {
+       $(this).click(function(){
+            var this_s=$(this);
+            $(".inner a").removeClass('tab_current');
+            this_s.addClass('tab_current');
+            $("#con .cell").css("display","none");
+            $("#con .cell").eq(number).css("display","block");
+	   });
     });
+});
 </script>

@@ -13,7 +13,7 @@ class TopicsModel extends Model {
     
     /* 自动完成规则 */
     protected $_auto = array(
-        array('uid', 'is_login', self::MODEL_BOTH, 'function'),
+        array('uid', 'is_login', self::MODEL_BOTH, 'function', self::MODEL_INSERT),
         array('add_time', NOW_TIME, self::MODEL_INSERT),
         array('reply_time', NOW_TIME, self::MODEL_INSERT),
         array('updata_time', NOW_TIME, self::MODEL_UPDATE),
@@ -42,10 +42,10 @@ class TopicsModel extends Model {
         if(empty($data)){
             return false;
         }
-        if($data['uid']==0){
+        /*if($data['uid']==0){
             $this->error = '非法参数，用户签名不正确！';
             return false;
-        }
+        }*/
         $status = $this->save($data); //更新基础内容
         if(false === $status){
              $this->error = '编辑帖子出错！';
@@ -53,6 +53,29 @@ class TopicsModel extends Model {
         }
         return $status;
     }
+    
+    public function _move(){
+        //重置自动验证
+        $this->_validate = array(
+        );
+        /* 获取数据对象 */
+        $data = $this->create($data);
+        if(empty($data)){
+            return false;
+        }
+        /*if($data['uid']==0){
+            $this->error = '非法参数，用户签名不正确！';
+            return false;
+        }*/
+        $status = $this->field('nid,id')->save($data); //更新基础内容
+        if(false === $status){
+             $this->error = '编辑帖子出错！';
+             return false;
+        }
+        return $status;
+    }
+    
+    
     
     public function _add(){
         /* 获取数据对象 */
@@ -76,6 +99,8 @@ class TopicsModel extends Model {
         }
         //储存tags
         $this->insert_tag($data['tags'],$status);
+        //记录行为
+        action_log('add_topics', 'topics',$status,$data['uid']);
         return $status;
     }
     

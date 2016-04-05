@@ -14,6 +14,31 @@ function check_verify($code, $id = ''){
 	return $verify->check($code, $id);
 }
 
+
+
+function convert_money($money) {
+    $money = (string)$money;
+    $coppers = substr($money,-2) ? substr($money,-2) : 0;
+    $silver = substr($money,-4,-2) ? substr($money,-4,-2) : 0;
+    $glod = substr($money,0,-4) ? substr($money,0,-4) : 0;
+    if($coppers == 0){
+        $coppers = '0 <img src="//cdn.v2ex.com/static/img/bronze.png" alt="B" align="absmiddle" border="0"> ';   
+    }else{
+        $coppers =$coppers.' <img src="//cdn.v2ex.com/static/img/bronze.png" alt="B" align="absmiddle" border="0"> ';    
+    }
+     if($silver == 0){
+        $silver = "";   
+    }else{
+        $silver= $silver.' <img src="//cdn.v2ex.com/static/img/silver.png" alt="S" align="absmiddle" border="0" style="padding-bottom: 2px;"> ';    
+    }
+     if($glod == 0){
+        $glod = '';   
+    }else{
+        $glod = $glod.' <img src="//cdn.v2ex.com/static/img/gold.png" alt="G" align="absmiddle" border="0" style="padding-bottom: 2px;"> ';    
+    }
+    return "{$glod}{$silver}{$coppers}";
+}
+
 /**
  * 获取文档标题
  * @param int $cover_id
@@ -56,7 +81,7 @@ function get_spam($id = 0){
  *禁止已登录会员进入登陆和注册页面 
  */  
 function _log_reg_state(){
-   if(isset($_SESSION['user_auth']['username']) || !empty($_SESSION['user_auth']['username'])){
+   if(is_login()!== 0){
        redirect(U("Index/index"));
    }
 };
@@ -65,7 +90,7 @@ function _log_reg_state(){
  *禁止未登录会员进入发布页面
  */  
 function _login_state(){
-   if(!isset($_SESSION['user_auth']['username']) || empty($_SESSION['user_auth']['username'])){
+   if(is_login() == 0){
        redirect(U("Index/index"));
    }
 };

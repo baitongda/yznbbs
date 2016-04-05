@@ -15,14 +15,15 @@ namespace Home\Controller;
 class SetController extends HomeController {
     public function index(){
         _login_state();
-        $map['id'] = is_login();
-        $user = M('Member') ->where($map) ->find();
+        $user = M('Member') ->where(array('id' =>is_login())) ->find();
         $this ->assign('user',$user);
         $this ->display();
+
+        
     }
     
     public function password(){
-        $pas = is_login();
+        _login_state();
         if(IS_POST){
           $res=D('Member') ->_password();     
           if(!$res){
@@ -35,9 +36,9 @@ class SetController extends HomeController {
     }
     
     public function info(){
-        $pas = is_login();
+        _login_state();
         if(IS_POST){
-          $res = D('Member') ->_info($pas);     
+          $res = D('Member') ->_info();     
           if(!$res){
               $this ->error(D('Member') ->getError());
           }else{

@@ -36,7 +36,7 @@ class MemberModel extends Model {
      * @param  integer $uid 用户ID
      * @return boolean      ture-登录成功，false-登录失败
      */
-    public function _info($pas,$data=null){
+    public function _info($data=null){
         //重置自动验证
         $this->_validate = array(
 

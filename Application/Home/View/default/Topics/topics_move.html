@@ -1,0 +1,42 @@
+<div id="Main">
+                <div class="sep20"></div>
+                
+<div class="box">
+    <div class="header"><a href="/">{:C('WEB_SITE_TITLE')}</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="{:U('Node/index?id='.$topics['nid'])}">{$topics.nid|get_node}</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="{:U('Topics/index?id='.$topics['id'])}">{$topics.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> 移动主题</div>
+    <div class="inner">
+        <form method="post" action="">
+        <input type="hidden" value="{$topics.id}" name="id">
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+            <tbody><tr>
+                <td width="120" align="right">主题 ID</td>
+                <td width="auto" align="left">{$topics.id}</td>
+            </tr>
+            <tr>
+                <td width="120" align="right">标题</td>
+                <td width="auto" align="left"><a href="{:U('Topics/index?id='.$topics['id'])}" target="_blank">{$topics.title}</a></td>
+            </tr>
+            <tr>
+                <td width="120" align="right">当前所在节点</td>
+                <td width="auto" align="left"><a href="{:U('Node/index?id='.$topics['nid'])}" target="_blank">{$topics.nid|get_node}</a></td>
+            </tr>
+            <tr>
+                <td width="120" align="right">目标节点</td>
+                <td width="auto" align="left">
+                    <select name="nid" id="nodes" style="width: 300px; font-size: 14px;" data-placeholder="请选择一个节点">
+                       <option></option>
+                       <volist name="node.list" id="vo">
+                            <option value="{$vo.id}">{$vo.pid|get_node} / {$vo.title}</option>
+                       </volist>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right"></td>
+                <td width="auto" align="left"><input type="submit" class="super normal button" value="移动"></td>
+            </tr>
+        </tbody></table>
+        </form>
+    </div>
+</div>
+
+            </div>

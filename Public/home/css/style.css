@@ -1640,3 +1640,7 @@ border-radius: 3px;
 -moz-user-select: none;
 -ms-user-select: none;
 }
+
+#con .cell{
+display:none;
+}

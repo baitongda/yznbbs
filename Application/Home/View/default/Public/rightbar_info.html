@@ -41,7 +41,9 @@
     </div>
     <div class="inner">
         <div class="fr" id="money">
-           <a href="/balance" class="balance_area" style="">20 <img src="//cdn.v2ex.com/static/img/silver.png" alt="S" align="absmiddle" border="0" style="padding-bottom: 2px;"> 45 <img src="//cdn.v2ex.com/static/img/bronze.png" alt="B" align="absmiddle" border="0"></a>
+            <a href="/balance" class="balance_area" style="">
+                    {$user_info.currency|convert_money}
+            </a>
         </div>
         <a href="/notifications" class="fade">{$user_info.unread_notifi} 条未读提醒</a>
     </div>

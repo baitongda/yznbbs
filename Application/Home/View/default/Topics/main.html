@@ -1,11 +1,11 @@
+{:W('NodeCss/index',array($topics['nid']))}
 <div id="Main">
-    
     <!--帖子详情-->     
     <div class="sep20"></div>    
     <div class="box" style="border-bottom: 0px;">
         <div class="header">
             <div class="fr"><a href="/member/timchou"><img src="{$topics.uid|get_avatar=###,'73'}" class="avatar" border="0" align="default"></a></div>
-            <a href="/">YznBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/go/linux">{$topics.nid|get_node}</a>
+            <a href="/">YznBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="{:U('Node/index?id='.$topics['nid'])}">{$topics.nid|get_node}</a>
             <div class="sep10"></div>
             <h1>{$topics.title}</h1>
             <div id="topic_263649_votes" class="votes">
@@ -14,7 +14,7 @@
             <small class="gray">
                 <a href="{:U('User/index?id='.$topics['uid'])}">{$topics.uid|get_username}</a> · {$topics.add_time|check_time}前 · {$topics.view} 次浏览 &nbsp; 
                 <!--判断编辑修改-->
-                <equal name="topics.uid" value="$Think.session.user_auth.id"><a href="{:U('Topics/edit?id='.$topics['id'])}" class="op">MOVE</a> &nbsp;<a href="{:U('Topics/edit?id='.$topics['id'])}" class="op">编辑</a></equal>
+                <equal name="topics.uid" value="$Think.session.user_auth.id"><a href="{:U('Topics/move?id='.$topics['id'])}" class="op">移动</a> &nbsp;<a href="{:U('Topics/edit?id='.$topics['id'])}" class="op">编辑</a></equal>
                 <!--判断编辑修改-->
             </small>
         </div>

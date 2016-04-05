@@ -34,8 +34,8 @@ class HomeController extends Controller {
 
         $id=is_login();
         if($id){
-           $user_info = M('Member')  ->find($id);
-           $this ->assign('user_info',$user_info);
+            $user_info = M('Member') ->cache('my_info',60)->find($id);//个人信息缓存60秒
+            $this ->assign('user_info',$user_info);
         }
         
         

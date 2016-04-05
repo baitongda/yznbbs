@@ -20,18 +20,9 @@ class NodeModel extends Model {
            case "hot":
            $res=$this->where($map)->cache('cache_hot_node',600)->limit(10)->select();
            return $res;
-           break;
-       }
-        
-        
-        
-        
-        
-        
-        
-        
-	}
-    
+            break;
+        }
+   }
    
 
 }

@@ -19,7 +19,7 @@
                         </eq>
                     </span>
                 </td>
-                <neq name="vo.reply_count" value="0"><td width="70" align="right" valign="middle"><a href="/t/263606#reply13" class="count_livid">{$vo.reply_count}</a></td></neq>
+                <neq name="vo.reply_count" value="0"><td width="70" align="right" valign="middle"><a href="{:U('Topics/index?id='.$vo['id'])}#reply{$vo['reply_count']}" class="count_livid">{$vo.reply_count}</a></td></neq>
                 
             </tr>
         </tbody>
