@@ -1,6 +1,6 @@
 <extend name="Public/base" />
 <block name="meta">
-    <title>{:C('WEB_SITE_TITLE')}</title>
+    <title>{:C('WEB_SITE_TITLE')} › 社区财富排行榜</title>
     <meta name="keywords" content="{:C('WEB_SITE_KEYWORD')}" />
 	<meta name="description" content="{:C('WEB_SITE_DESCRIPTION')}" />   
 </block>
@@ -13,10 +13,7 @@
          <else/>
             <include file="Public/rightbar_login" />
       </if>
-      {:W('HotTopics/index')} 
-      <include file="Public/rightbar_new_node" />
-      {:W('Status/index')}
     </div>
-    <include file="Index/main" />
+    <include file="Top/top_rich" />
 </block>
 <block name="footer"><include file="Public/footer" /></block>

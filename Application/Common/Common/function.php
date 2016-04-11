@@ -341,7 +341,7 @@ function execute_action($rules = false, $action_id = null, $user_id = null){
     return $return;
 }
 
-
+/**/
 function getFormate($arr){
     $top = $child = array();
     foreach($arr as $val){
@@ -354,6 +354,50 @@ function getFormate($arr){
     return array('top' => $top, 'child' => array_values($child) );
 }
 
+/**/
+function check_action_limit($action = null, $model = null, $record_id = null, $user_id = null, $ip = false){
+    $time = time();
+    $map=array(
+      'name'   =>$action,
+      'status' =>1,
+    );
+    $limit = M('ActionLimit')->where($map)->find();
+    $ago = get_time_ago($limit['time_unit'], $limit['time_number'], $time);
+    
+    $item['create_time'] = array('egt', $ago);
+    $log = M('ActionLog')->where($item)->order('create_time desc')->select();
+    return($log);
+    
 
+}
 
+function get_time_ago($type = 'second', $some = 1, $time = null){
+    $time = empty($time) ? time() : $time;
+    switch ($type) {
+        case 'second':
+            $result = $time - $some;
+            break;
+        case 'minute':
+            $result = $time - $some * 60;
+            break;
+        case 'hour':
+            $result = $time - $some * 60 * 60;
+            break;
+        case 'day':
+            $result = strtotime('-' . $some . ' day', $time);
+            break;
+        case 'week':
+            $result = strtotime('-' . ($some * 7) . ' day', $time);
+            break;
+        case 'month':
+            $result = strtotime('-' . $some . ' month', $time);
+            break;
+        case 'year':
+            $result = strtotime('-' . $some . ' year', $time);
+            break;
+        default:
+            $result = $time - $some;
+    }
+    return $result;
+}
 

@@ -78,12 +78,7 @@ class ReplyModel extends Model {
         if(!($data = $this->create())){
             return false;
         }else{
-            $spam=get_spam($data['uid']);//灌水判断
             $data['content']=$this->aite($data['content'],$data['uid'],$data['topics_id']);//@功能
-            if($spam){
-                $this->error = '发帖过于频繁！请'.$spam.'秒后在发布';
-                return false;
-            }
             if($data['uid']==0){
                 $this->error = '非法参数，用户签名不正确！';
                 return false;
@@ -99,10 +94,7 @@ class ReplyModel extends Model {
                 $map['reply_time']=time();
                 $map['cid']=$data['uid'];
                 M('Topics')->where($where)->setField($map); // 用户的积分加1
-                /*回复会更新帖子回复数.回复时间*/
                 
-                /*写入发帖时间，用于后面防灌水*/
-                set_spam($data['uid']);
                 
                 //记录行为
                 action_log('replay', 'reply',$id,$data['uid']);

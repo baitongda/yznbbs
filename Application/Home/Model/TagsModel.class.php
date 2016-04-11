@@ -8,7 +8,7 @@ class TagsModel extends Model {
 		$tag['num'] = $this->where(array('title' =>$tag_title))->find();
         if($tag){
              $field='s.id,s.title,s.uid,s.cid,s.nid,s.reply_count,s.add_time,s.is_top';
-             $tag['list']=M('Tags')->alias('t')
+             $tag['list']=$this->alias('t')
                       ->join('yzn_tags_relation r ON r.tag_id = t.id')
                       ->join('yzn_topics s ON  r.topics_id =s.id' )
                       ->where(array('t.id' => $tag['num']['id']))
@@ -20,8 +20,4 @@ class TagsModel extends Model {
 		}
         
 	}
-
-
-
-
 }

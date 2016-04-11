@@ -1,7 +1,10 @@
 <?php
 namespace Home\Widget;
 use Think\Controller;
-
+/**
+ * 节点css的widget控制器
+ * 时效性不高 可以用缓存存储
+ */
 class NodeCssWidget extends Controller {
     
     public function index($node){

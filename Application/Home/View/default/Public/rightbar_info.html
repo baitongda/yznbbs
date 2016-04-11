@@ -7,7 +7,7 @@
                     <td width="48" valign="top"><a href="/User/index?id={:is_login()}"><img src="{$Think.session.user_auth.id|get_avatar=###,'48'}" class="avatar" border="0" align="default" style="max-width: 48px; max-height: 48px;"></a></td>
                     <td width="10" valign="top"></td>
                     <td width="auto" align="left">
-                        <span class="bigger"><a href="/User/index?id={:is_login()}">{:get_username()}</a></span>
+                        <span class="bigger"><a href="/User/index?id={:is_login()}">{:get_username()}</a> ({$user_info.score|getLevelByScore})</span>
                         <div class="sep5"></div>
                         <span class="fade">{$user_info.tagline}</span>
                     </td>
@@ -25,8 +25,9 @@
             </tbody>
             </table>
     </div>
-    <div class="cell">
-       <div style="width: 250px; background-color: #f0f0f0; height: 3px; display: inline-block; vertical-align: middle;"><div style="width: 41px; background-color: #ccc; height: 3px; display: inline-block;"></div></div>
+    <php>$title=getCurrentUserInfo($user_info['score']);</php>
+    <div class="cell" id="upgrade" data-toggle="tooltip" data-placement="bottom">
+        <div  style="width: 250px; background-color: #f0f0f0; height: 3px; display: inline-block; vertical-align: middle;"><div style="width: {$title.percent}%; background-color: #a9de62; height: 3px; display: inline-block;"></div></div>
     </div>
     <div class="cell" style="padding: 5px;">
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -48,3 +49,13 @@
         <a href="/notifications" class="fade">{$user_info.unread_notifi} 条未读提醒</a>
     </div>
 </div>
+
+<script>
+$(function () {
+    $('#upgrade').tooltip({
+          html: true,
+        title: '当前阶段：{$title.current} <br/>下一阶段：{$title.next}<br/>现有：{$user_info.score}<br/>需要：{$title.left}<br/>剩余需要： {$title.upgrade_require}<br/>升级进度：{$title.percent}% <br/> '
+          }
+    );
+})
+</script>

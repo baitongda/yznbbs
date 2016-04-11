@@ -9,7 +9,7 @@ class MemberModel extends Model {
         array('username','require','用户名不得为空！',self::MUST_VALIDATE,self::MODEL_INSERT), //默认情况下用正则进行验证
         array('username','2,16','账号长度不得小于2位，大于10位！',self::MUST_VALIDATE,'length',self::MODEL_INSERT), // 判断用户名长度
         array('username','','帐号名称已经被注册！',self::MUST_VALIDATE,'unique'), // 在新增的时候验证name字段是否唯一
-        array('username','checkuser','账号含有敏感字符',self::MUST_VALIDATE,'callback',self::MODEL_INSERT), //自定义函数验证账号敏感字符
+        array('username','checkuser','账号禁止注册或含有敏感字符',self::MUST_VALIDATE,'callback',self::MODEL_INSERT), //自定义函数验证账号敏感字符
 
         
         /* 验证邮箱 */
@@ -38,11 +38,8 @@ class MemberModel extends Model {
      */
     public function _info($data=null){
         //重置自动验证
-        $this->_validate = array(
-
-        );
-        $this->_auto = array(
-        );
+        $this->_validate = array();
+        $this->_auto = array();
         if(!($data = $this->create())){
             return false;
         }else{
@@ -172,12 +169,16 @@ class MemberModel extends Model {
      * @return [type]
      */
     protected function checkuser($str){
-        //敏感账号过滤
-        $_mg[0]='admin'; 
-        $_mg[1]='管理员';
-        if(in_array($str,$_mg)){
-        return false;
-        }; 
+        //保留字过滤
+        $denyName=C('USER_NAME_BAOLIU');
+        if($denyName!=''){
+            $denyName=explode(',',$denyName);
+            foreach($denyName as $val){
+                if(!is_bool(strpos($str,$val))){
+                    return false;
+                }
+            }
+        }
         
         //敏感字符过滤
         $_char_pattern='/[\x4E00-\x9FFF\w]{1,11}/'; 

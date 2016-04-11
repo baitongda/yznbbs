@@ -32,9 +32,8 @@ class HomeController extends Controller {
             $this->error('站点已经关闭，请稍后访问~');
         }
 
-        $id=is_login();
-        if($id){
-            $user_info = M('Member') ->cache('my_info',60)->find($id);//个人信息缓存60秒
+        if(is_login()){
+            $user_info = M('Member') ->cache('my_info',60)->find(is_login());//个人信息缓存60秒
             $this ->assign('user_info',$user_info);
         }
         

@@ -5,21 +5,26 @@
         <table cellpadding="5" cellspacing="0" border="0" width="100%">
             <tbody><tr>
                 <td width="50" align="right"><span class="gray">注册会员</span></td>
-                <td width="auto" align="left"><strong>162783</strong></td>
+                <td width="auto" align="left"><strong>{$count.member}</strong></td>
             </tr>
             <tr>
                 <td width="50" align="right"><span class="gray">主题</span></td>
-                <td width="auto" align="left"><strong>259639</strong></td>
+                <td width="auto" align="left"><strong>{$count.topics}</strong></td>
             </tr>
             <tr>
                 <td width="50" align="right"><span class="gray">回复</span></td>
-                <td width="auto" align="left"><strong>2976145</strong></td>
+                <td width="auto" align="left"><strong>{$count.reply}</strong></td>
             </tr>
+            <tr>
+                <td width="50" align="right"><span class="gray">建站时间</span></td>
+                <td width="auto" align="left"><strong>2016年4月15日</strong></td>
+            </tr>
+                
         </tbody></table>
     </div>
     <div class="inner">
-        <span class="chevron">›</span> <a href="/top/rich">财富排行榜</a>
+        <span class="chevron">›</span> <a href="{:U('Top/rich')}">财富排行榜</a>
         <div class="sep5"></div>
-        <span class="chevron">›</span> <a href="/top/player">消费排行榜</a>
+        <span class="chevron">›</span> <a href="{:U('Top/score')}">积分排行榜</a>
     </div>
 </div>

@@ -14,8 +14,6 @@ function check_verify($code, $id = ''){
 	return $verify->check($code, $id);
 }
 
-
-
 function convert_money($money) {
     $money = (string)$money;
     $coppers = substr($money,-2) ? substr($money,-2) : 0;
@@ -94,3 +92,76 @@ function _login_state(){
        redirect(U("Index/index"));
    }
 };
+
+/** 
+ *根据积分查询对应等级
+ */
+function getLevelByScore($score){
+    $level = getLevelConfig();
+    $level = array_reverse($level, true);
+    foreach ($level as $key => $value) {
+       if ($score >= $key) {
+           return $value;
+       }
+    }
+    
+    //查询无结果，返回最高等级
+    $keys = array_keys($level);
+    $max_key = $keys[count($level) - 1];
+    return $level[$max_key];
+
+};
+
+/** 
+ *对等级进行数组转换
+ */
+function getLevelConfig(){
+    $level=C('USER_LEVEL');
+    if ($level == '') {
+        return array(
+            0 => 'Lv1 实习',
+            50 => 'Lv2 试用',
+            100 => 'Lv3 转正',
+            200 => 'Lv4 助理',
+            400 => 'Lv5 经理',
+            800 => 'Lv6 董事',
+            1600 => 'Lv7 董事长'
+        );
+    } else {
+        $level = str_replace("\r", '', $level);
+        $level = explode("\n", $level);
+       foreach ($level as $v) {
+                $temp = explode(':', $v);
+                $result[$temp[0]] = $temp[1];
+       }
+       return $result;
+   }
+
+}
+
+function getCurrentUserInfo($score){
+    $data['current'] = getLevelByScore($score);//当前等级
+    $level = getLevelConfig();//所有等级
+    foreach ($level as $key => $value) {
+          if($score > $key){
+              $data['before_level_need']=$key;
+          }
+          if ($score <= $key) {
+              $data['next'] = $value;
+              $data['upgrade_require'] = $key;
+              break;
+          }
+    }
+    if (empty($data['next'])) {
+        //查询无结果，返回最高等级
+        $keys = array_keys($level);
+        $max_key = $keys[count($level) - 1];
+        $data['next'] = $level[$max_key];
+    }
+    $data['left'] =$data['upgrade_require']-$score;
+    $data['percent']=number_format((1-$data['left']/($data['upgrade_require']-$data['before_level_need']))*100,1);
+    return $data;
+
+
+
+}

@@ -87,6 +87,9 @@ class TopicsModel extends Model {
             $this->error = '非法参数，用户签名不正确！';
             return false;
         }
+        //行为限制
+        // $return = check_action_limit('add_topics');
+        
         if(empty($data['nid'])){
             $this->error = '板块不得为空！';
              return false;
