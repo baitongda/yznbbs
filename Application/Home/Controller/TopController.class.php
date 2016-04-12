@@ -26,10 +26,10 @@ class TopController extends HomeController {
     
      public function score(){
        $list = M('Member') ->field('uniqid,password',true) ->order('score desc')->cache('top_score',60*60)->limit(10)->select();
-       if(empty(S('top_rich_time'))){
-           S('top_rich_time',date("y-m-d h:i:s",time()),60*60);
+       if(empty(S('top_score_time'))){
+           S('top_score_time',date("y-m-d h:i:s",time()),60*60);
        }
-       $now_time=S('top_rich_time');
+       $now_time=S('top_score_time');
          
        $this ->assign('list',$list);
        $this ->assign('now_time',$now_time);

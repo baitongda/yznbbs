@@ -60,7 +60,7 @@ class ReplyModel extends Model {
                             'add_time'  =>time(),
                         );
                         M('Notifications')->add($data);
-                        M('Member')->where(array('id'=>$res))->setInc('notifi',1); //未读提醒加
+                        M('Member')->where(array('id'=>$res))->setInc('notifi',1); //未读提醒加1
                         
 					}
 			}        

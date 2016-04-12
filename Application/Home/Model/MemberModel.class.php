@@ -129,8 +129,8 @@ class MemberModel extends Model {
             'username'     => $user['username'],
             'uniqid'       => $user['uniqid'],
         );
-        session('user_auth', $auth);
-        session('user_auth_sign', data_auth_sign($auth));
+        session('user_auth', $auth,60*60*12);
+        session('user_auth_sign', data_auth_sign($auth),60*60*12);
         return $data;
     }
     

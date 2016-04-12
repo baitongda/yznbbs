@@ -366,9 +366,17 @@ function check_action_limit($action = null, $model = null, $record_id = null, $u
     
     $item['create_time'] = array('egt', $ago);
     $log = M('ActionLog')->where($item)->order('create_time desc')->select();
-    return($log);
+    $return = array();
+    if (count($log) >= $limit['frequency']) {
+        $return=array(
+           'state' => false,
+           'info'  => $limit['message']
+        );
+    }else{
+       $return['state'] = true;
+    }
     
-
+    return $return;
 }
 
 function get_time_ago($type = 'second', $some = 1, $time = null){

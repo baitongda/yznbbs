@@ -88,7 +88,11 @@ class TopicsModel extends Model {
             return false;
         }
         //行为限制
-        // $return = check_action_limit('add_topics');
+        $return = check_action_limit('add_topics');
+        if ($return && !$return['state']) {
+            $this->error = $return['info'];
+            return false;
+        }
         
         if(empty($data['nid'])){
             $this->error = '板块不得为空！';
