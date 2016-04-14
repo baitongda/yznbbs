@@ -1,4 +1,4 @@
 <?php
 return array(
-    'app_begin' => array('Behavior\CronRunBehavior'),    
+    //'app_begin' => array('Behavior\CronRunBehavior'),    
 );

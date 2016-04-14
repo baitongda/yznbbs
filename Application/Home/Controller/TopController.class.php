@@ -9,30 +9,28 @@
 namespace Home\Controller;
 /**
  * 排行榜控制器
- * 包括主页显示文章
+ * rich财富排行榜 score积分排行榜
  */
 class TopController extends HomeController {
     public function rich(){
        $list = M('Member') ->field('uniqid,password',true) ->order('currency desc')->cache('top_rich',60*60*12)->limit(10)->select();
-       if(empty(S('top_rich_time'))){
-           S('top_rich_time',date("y-m-d h:i:s",time()),60*60*12);
-       }
+       if(empty(S('top_rich_time'))) S('top_rich_time',date("y-m-d h:i:s",time()),60*60*12);
+
        $now_time=S('top_rich_time');
-       
+
        $this ->assign('list',$list);
        $this ->assign('now_time',$now_time);
-       $this ->display();  
+       $this ->display();
     }
-    
+
      public function score(){
        $list = M('Member') ->field('uniqid,password',true) ->order('score desc')->cache('top_score',60*60)->limit(10)->select();
-       if(empty(S('top_score_time'))){
-           S('top_score_time',date("y-m-d h:i:s",time()),60*60);
-       }
+       if(empty(S('top_score_time'))) S('top_score_time',date("y-m-d h:i:s",time()),60*60);
+
        $now_time=S('top_score_time');
-         
+
        $this ->assign('list',$list);
        $this ->assign('now_time',$now_time);
-       $this ->display();  
+       $this ->display();
     }
 }

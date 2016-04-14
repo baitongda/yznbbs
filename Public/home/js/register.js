@@ -7,7 +7,7 @@ $(function(){
       return false;
       function success(data){
           if(!data.status){
-             alert(data.info);
+             $('.problem').replaceWith('<div class="problem">请解决以下问题然后再提交：<ul><li>'+data.info+'</li></ul></div>');
              $("form .captcha").click();
           }else{
              window.location.href = data.url;

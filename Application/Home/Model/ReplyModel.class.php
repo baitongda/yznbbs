@@ -9,7 +9,7 @@ class ReplyModel extends Model {
         array('content','require','内容不得为空！',self::MUST_VALIDATE), //默认情况下用正则进行验证
         array('topics_id','require','回复参数错误！',self::MUST_VALIDATE), //默认情况下用正则进行验证
 	);
-    
+
      /* 回复模型自动完成 */
 	protected $_auto = array(
         array('uid', 'is_login', self::MODEL_INSERT, 'function'),
@@ -17,11 +17,13 @@ class ReplyModel extends Model {
         // array('content','aite',self::MUST_VALIDATE,'callback'), //@功能
         //array('content', 'htmlspecialchars', self::MODEL_BOTH, 'function'),
 	);
-    
+
     /**
      * @会员功能
-     * @param  integer $uid 用户ID
-     * @return boolean      ture-登录成功，false-登录失败
+     * @param  integer $content 回帖内容
+     * @param  integer $id  回帖id
+     * @param  integer $tid  回帖帖子id
+     * @return 返回内容
      */
     public function aite($content,$id,$tid){
         //@会员功能
@@ -40,9 +42,12 @@ class ReplyModel extends Model {
                    'add_time'  =>time(),
                 );
                 M('Notifications')->add($data);
-                M('Member')->where(array('id'=>$res))->setInc('notifi',1); //未读提醒加1
+
+                $da['notifi'] = array('exp','notifi+1');
+                $da['unread_notifi'] = array('exp','unread_notifi+1');
+                M('Member')->where(array('id'=>$res))->save($da); //未读提醒加1
              }
-         }    
+         }
 	     foreach ( $matches [1] as $u ) {
 		   if ($u){
 			$res =M('Member')->where(array('username'=>$u))->getField('id');
@@ -51,7 +56,7 @@ class ReplyModel extends Model {
                         $replace [] = '<a target="_blank" href="/User/index/id/'.$res.'" >@' . $u . '</a>';
                         /*@提醒
                         *type类型说明 1：回复 2：@ 3：收藏 4：关注 
-                        */                     
+                        */
                         $data = array(
                             'uid'       => $res,
                             'type'      => 2,
@@ -60,15 +65,18 @@ class ReplyModel extends Model {
                             'add_time'  =>time(),
                         );
                         M('Notifications')->add($data);
-                        M('Member')->where(array('id'=>$res))->setInc('notifi',1); //未读提醒加1
-                        
+
+                        $da['notifi'] = array('exp','notifi+1');
+                        $da['unread_notifi'] = array('exp','unread_notifi+1');
+                        M('Member')->where(array('id'=>$res))->save($da); //未读提醒加1
+
 					}
-			}        
+			}
 		}
 			return str_replace( @$search, @$replace, $content);
-           
+
       }
-    
+
     /**
      * 添加回复
      * @param  integer $uid 用户ID
@@ -83,6 +91,14 @@ class ReplyModel extends Model {
                 $this->error = '非法参数，用户签名不正确！';
                 return false;
             }
+
+            //行为限制
+        $return = check_action_limit('add_reply');
+        if ($return && !$return['state']) {
+            $this->error = $return['info'];
+            return false;
+        }
+
             $id = $this->add($data); //添加基础内容
             if(!$id){
                 $this->error = '回复错误！';
@@ -94,19 +110,12 @@ class ReplyModel extends Model {
                 $map['reply_time']=time();
                 $map['cid']=$data['uid'];
                 M('Topics')->where($where)->setField($map); // 用户的积分加1
-                
-                
+
                 //记录行为
                 action_log('replay', 'reply',$id,$data['uid']);
-                
+
             }
         }
         return $data;
     }
-    
-    
-    
-    
-    
-    
 }

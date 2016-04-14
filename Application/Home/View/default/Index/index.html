@@ -13,9 +13,9 @@
          <else/>
             <include file="Public/rightbar_login" />
       </if>
-      {:W('HotTopics/index')} 
-      <include file="Public/rightbar_new_node" />
-      {:W('Status/index')}
+      {:W('HotTopics/index')}<!--热门贴子-->
+      {:W('Links/index')}<!--友情链接-->
+      {:W('Status/index')}<!--社区状态-->
     </div>
     <include file="Index/main" />
 </block>

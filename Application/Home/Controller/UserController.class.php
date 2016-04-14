@@ -19,6 +19,9 @@ class UserController extends HomeController {
         if(!$User){
 			$this ->error( D('Member') ->getError());
 		}
+        
+        // 判断是不是已关注
+        $User['in_follow']=D('Follow')->is_follow($id);
         $this ->assign('user',$User);
         $this ->display(); 
     }

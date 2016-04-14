@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: w.rdc.sae.sina.com.cn:3307
--- 生成日期: 2016 年 04 月 12 日 15:38
+-- 生成日期: 2016 年 04 月 14 日 13:55
 -- 服务器版本: 5.6.23
 -- PHP 版本: 5.3.3
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `yzn_action_log` (
   `remark` text NOT NULL COMMENT '日志备注',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=110 ;
 
 --
 -- 转存表中的数据 `yzn_action_log`
@@ -140,7 +140,15 @@ INSERT INTO `yzn_action_log` (`id`, `action_id`, `user_id`, `action_ip`, `model`
 (98, 2, 2, 986844098, 'reply', 166, 'ken678在2016-04-11 17:49回复了帖子。', 1460368193),
 (99, 2, 2, 986844098, 'reply', 167, 'ken678在2016-04-11 17:50回复了帖子。', 1460368230),
 (100, 2, 2, 986844098, 'reply', 168, 'ken678在2016-04-11 17:51回复了帖子。', 1460368280),
-(101, 2, 2, 986844098, 'reply', 169, 'ken678在2016-04-11 17:51回复了帖子。', 1460368310);
+(101, 2, 2, 986844098, 'reply', 169, 'ken678在2016-04-11 17:51回复了帖子。', 1460368310),
+(102, 2, 2, 986844098, 'reply', 170, 'ken678在2016-04-13 09:05回复了帖子。', 1460509526),
+(103, 2, 2, 986844098, 'reply', 171, 'ken678在2016-04-13 09:05回复了帖子。', 1460509543),
+(104, 2, 2, 986844098, 'reply', 172, 'ken678在2016-04-13 09:12回复了帖子。', 1460509956),
+(105, 2, 2, 986844098, 'reply', 173, 'ken678在2016-04-13 09:13回复了帖子。', 1460510008),
+(106, 1, 2, 986844098, 'topics', 137, 'ken678在2016-04-13 11:25发布了帖子。', 1460517957),
+(107, 2, 2, 986844098, 'reply', 174, 'ken678在2016-04-13 17:08回复了帖子。', 1460538505),
+(108, 2, 2, 986844098, 'reply', 175, 'ken678在2016-04-13 17:08回复了帖子。', 1460538536),
+(109, 1, 7, 986844098, 'topics', 138, '御宅男在2016-04-14 13:52发布了帖子。', 1460613138);
 
 -- --------------------------------------------------------
 
@@ -190,8 +198,48 @@ CREATE TABLE IF NOT EXISTS `yzn_favourite` (
 
 INSERT INTO `yzn_favourite` (`id`, `uid`, `content`) VALUES
 (7, 7, '127,26,25,15'),
-(8, 2, '24,25,15'),
+(8, 2, '72,129,93,24,25,15'),
 (9, 14, '93');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yzn_follow`
+--
+
+CREATE TABLE IF NOT EXISTS `yzn_follow` (
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `uid` int(8) unsigned NOT NULL COMMENT '关注者',
+  `content` mediumtext NOT NULL COMMENT '关注者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `yzn_follow`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yzn_links`
+--
+
+CREATE TABLE IF NOT EXISTS `yzn_links` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `title` varchar(20) NOT NULL COMMENT '友链名称',
+  `url` varchar(50) NOT NULL COMMENT '友链网址',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `yzn_links`
+--
+
+INSERT INTO `yzn_links` (`id`, `title`, `url`, `status`) VALUES
+(1, 'thinkphp', 'http://www.thinkphp.cn/', 1),
+(2, 'V2EX', 'http://www.v2ex.com/', 1);
 
 -- --------------------------------------------------------
 
@@ -218,16 +266,16 @@ CREATE TABLE IF NOT EXISTS `yzn_member` (
   `last_login_ip` bigint(20) unsigned NOT NULL COMMENT '最后登录IP',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- 转存表中的数据 `yzn_member`
 --
 
 INSERT INTO `yzn_member` (`id`, `uniqid`, `username`, `password`, `email`, `score`, `currency`, `tagline`, `bio`, `notifi`, `unread_notifi`, `favourite`, `reg_time`, `reg_ip`, `last_login_time`, `last_login_ip`) VALUES
-(2, '890ae7bd6c6e791463ff850291e3033d9de18a63', 'ken678', 'fcddf14938e6b150a10786d81d6aa0e36e787892', '530765310@qq.com', 564, 13, '美好时光总是很短暂的！！', '美好时光总是很短暂的！！', 7, 0, 3, 1458020135, 2059491498, 0, 0),
+(2, '890ae7bd6c6e791463ff850291e3033d9de18a63', 'ken678', 'fcddf14938e6b150a10786d81d6aa0e36e787892', '530765310@qq.com', 575, 13, '美好时光总是很短暂的！！', '美好时光总是很短暂的！！', 7, 0, 6, 1458020135, 2059491498, 0, 0),
 (6, '517c7d0ea1cc9fe8fc57aceafc005c77e709a29f', 'ken123', 'fcddf14938e6b150a10786d81d6aa0e36e787892', '695477967@qq.com', 0, 0, '', '', 0, 0, 0, 1458089927, 2059491498, 0, 0),
-(7, '7707c456732f4e81b259133ffe061138ce806942', '御宅男', 'fcddf14938e6b150a10786d81d6aa0e36e787892', '530765312@qq.com', 7, 5, '御宅男工作室有多年的软件开发经验，专注于：软件制作，验证码识别，网站制作，采集工具，模拟操作，批量注册，群发软件，留言功能', '御宅男工作室有多年的软件开发经验，专注于：软件制作，验证码识别，网站制作，采集工具，模拟操作，批量注册，群发软件，留言功能', 2, 0, 4, 1458097833, 2059491498, 0, 0),
+(7, '7707c456732f4e81b259133ffe061138ce806942', '御宅男', 'fcddf14938e6b150a10786d81d6aa0e36e787892', '530765312@qq.com', 12, 5, '御宅男工作室有多年的软件开发经验，专注于：软件制作，验证码识别，网站制作，采集工具，模拟操作，批量注册，群发软件，留言功能', '御宅男工作室有多年的软件开发经验，专注于：软件制作，验证码识别，网站制作，采集工具，模拟操作，批量注册，群发软件，留言功能', 5, 3, 4, 1458097833, 2059491498, 0, 0),
 (8, 'dffa4c9da05ad2bb8b0db5b419b8553a58e88c7f', 'papi酱', 'fcddf14938e6b150a10786d81d6aa0e36e787892', '453654565@qq.com', 20, 50, '', '', 0, 0, 0, 1458553750, 986844098, 0, 0),
 (9, '594faebd8910f22f26cc1f4b919dc6a46b95aa63', 'yacai', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', '358916139@qq.com', 0, 0, '', '', 0, 0, 0, 1458871528, 3074304924, 0, 0),
 (10, '7b2169da6a71cc6694b25efc000b9c7f2af2ecde', 'ddsadsadsadsa', '41a5aa940b5725d048d8820d3285b480f76ed6f1', 'ddsadsadsadsa@qq.com', 0, 0, '', '', 0, 0, 0, 1459314305, 1879791341, 0, 0),
@@ -241,7 +289,8 @@ INSERT INTO `yzn_member` (`id`, `uniqid`, `username`, `password`, `email`, `scor
 (18, '89f86f4c64c4ae8669e8536d816eb771bf67bad2', 'goright', '970de950276e387a41bc3206c3d2c40779b9cd24', '810560740@qq.com', 0, 0, '', '', 0, 0, 0, 1459951665, 1932783264, 0, 0),
 (19, '7d61693b704ceb972357be37f58c0c146acb81b2', 'Magic', '192b5d9305a0d8f6eda9fc3031e269d871ccf812', 'meilunzhi@gmail.com', 0, 0, '', '', 0, 0, 0, 1459959074, 2071564777, 0, 0),
 (20, '51877d8d0a3356083954bd2ce7dda7d95ae68e1c', 'dilei4148', '601f1889667efaebb33b8c12572835da3f027f78', '188308685@qq.com', 0, 0, '', '', 0, 0, 0, 1460012358, 3062802797, 0, 0),
-(21, 'bf002249e3642b518c5a06dc5d84f877cd633dfe', 'wangqiwen', 'e5b50f8a3c5dce3bcd7e2640c5666c17b6800d8d', 'wqw@flyminer.com', 0, 0, '', '', 0, 0, 0, 1460443960, 2033982335, 0, 0);
+(21, 'bf002249e3642b518c5a06dc5d84f877cd633dfe', 'wangqiwen', 'e5b50f8a3c5dce3bcd7e2640c5666c17b6800d8d', 'wqw@flyminer.com', 0, 0, '', '', 0, 0, 0, 1460443960, 2033982335, 0, 0),
+(22, 'd56fb777ee6fcb381f9688cf0bd313f25862fcb7', 'moonkid', '6765274b71b9f219c8a8a4b642a501bf5765f74e', 'moonkid@tom.com', 0, 0, '', '', 0, 0, 0, 1460510786, 3736672590, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -274,7 +323,7 @@ INSERT INTO `yzn_node` (`id`, `pid`, `title`, `description`, `css`, `sort`, `sia
 (7, 2, '软件', '发布各类免费软件', '0', 0, 0),
 (8, 3, '反馈', '用户举报，建议BUG反馈官方板块', '0', 0, 0),
 (9, 1, '综合讨论', '严禁发表低俗内容或广告帖。', '#Wrapper {\r\nbackground-image: url("//www.v2ex.com/static/img/shadow_light.png"), url("//static.v2ex.com/tiles/random.jpg");\r\nbackground-repeat: repeat-x, repeat;\r\n}\r\n\r\n.box {\r\nborder: 1px solid #e2e2ff;\r\n}', 0, 0),
-(10, 3, '程序发布', '官方程序发布板块', '#Wrapper {\r\nbackground-image: url("//www.v2ex.com/static/img/shadow_light.png"), url("//static.v2ex.com/tiles/random.jpg");\r\nbackground-repeat: repeat-x, repeat;\r\n}\r\n\r\n.box {\r\nborder: 1px solid #e2e2ff;\r\n}', 0, 0);
+(10, 3, '程序发布', '官方程序发布板块', '#Wrapper {\r\nbackground-color: #000;\r\nbackground-attachment: fixed;\r\nbackground: #000 url("http://static.v2ex.com/bgs/starwars.jpg") no-repeat 50% 0;\r\n}\r\n.box {\r\nbackground-color: rgba(0, 0, 0, 0.5);\r\ncolor: #fff;\r\nborder: 2px solid rgba(0, 0, 0, 0.4);\r\n}\r\n.box .cell {\r\nborder-bottom: 1px solid rgba(0, 0, 0, 0.4);\r\n}\r\na:link, a:visited, a:active {\r\ncolor: #ff9933;\r\n}\r\na:hover {\r\ncolor: #ffaa33;\r\n}\r\n.topic_content, .reply_content {\r\ncolor: #f0f0f0;\r\n}\r\na.op:link, a.op:visited, a.op:active {\r\nbackground-color: rgba(0, 0, 0, 0.8);\r\n}\r\na.op:hover {\r\nbackground-color: rgba(0, 0, 0, 1);\r\n}\r\na.count_livid:link, a.count_livid:active {\r\nbackground-color: #445;\r\ncolor: #99a;\r\n}\r\na.count_livid:visited, a.count_orange:visited {\r\nbackground-color: #445;\r\ncolor: #99a;\r\n}\r\na.count_livid:hover {\r\nbackground-color: #556;\r\n}\r\na.count_orange:hover {\r\nbackground-color: #ffaa33;\r\ncolor: #fff;\r\n}\r\n.snow {\r\ncolor: rgba(200, 200, 240, 0.3);\r\n}\r\n.fade {\r\ncolor: rgba(200, 200, 240, 0.4);\r\n}\r\n.mll, .mlt, .sll {\r\nbackground-color: rgba(0, 0, 20, 0.3);\r\ncolor: #f0f0f0;\r\nborder: 1px solid rgba(100, 100, 120, 0.5);\r\n}\r\n#Top {\r\nbackground: #000;\r\n}\r\n.inner:hover, .cell:hover {\r\nbackground-color: rgba(0, 0, 0, 0.3);\r\n}', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -290,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `yzn_notifications` (
   `type` tinyint(2) unsigned NOT NULL COMMENT '提醒类型',
   `add_time` int(10) unsigned NOT NULL COMMENT '提醒时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
 -- 转存表中的数据 `yzn_notifications`
@@ -326,7 +375,10 @@ INSERT INTO `yzn_notifications` (`id`, `uid`, `nid`, `tid`, `type`, `add_time`) 
 (40, 7, 2, 129, 2, 1460368193),
 (41, 7, 2, 129, 2, 1460368230),
 (42, 7, 2, 129, 2, 1460368280),
-(43, 7, 2, 129, 2, 1460368310);
+(43, 7, 2, 129, 2, 1460368310),
+(44, 7, 2, 129, 2, 1460509526),
+(45, 7, 2, 129, 2, 1460509956),
+(46, 7, 2, 129, 1, 1460510008);
 
 -- --------------------------------------------------------
 
@@ -341,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `yzn_reply` (
   `content` text NOT NULL COMMENT '内容',
   `add_time` int(10) unsigned NOT NULL COMMENT '发布时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=170 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=176 ;
 
 --
 -- 转存表中的数据 `yzn_reply`
@@ -416,7 +468,13 @@ INSERT INTO `yzn_reply` (`id`, `topics_id`, `uid`, `content`, `add_time`) VALUES
 (166, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460368193),
 (167, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460368230),
 (168, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460368280),
-(169, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460368310);
+(169, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460368310),
+(170, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460509526),
+(171, 129, 2, '@ken678 ', 1460509543),
+(172, 129, 2, '<a target="_blank" href="/User/index/id/7" >@御宅男</a> ', 1460509956),
+(173, 129, 2, '4444444444444444444', 1460510008),
+(174, 129, 2, '@ken678 ', 1460538505),
+(175, 129, 2, '@ken678 ', 1460538536);
 
 -- --------------------------------------------------------
 
@@ -429,7 +487,7 @@ CREATE TABLE IF NOT EXISTS `yzn_tags` (
   `title` varchar(10) NOT NULL COMMENT '标签名',
   `count` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '次数',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- 转存表中的数据 `yzn_tags`
@@ -441,7 +499,9 @@ INSERT INTO `yzn_tags` (`id`, `title`, `count`) VALUES
 (21, '标签', 1),
 (26, '图片', 1),
 (27, '信息', 1),
-(28, '模型', 1);
+(28, '模型', 1),
+(29, '制作', 1),
+(30, '友情链接', 1);
 
 -- --------------------------------------------------------
 
@@ -459,6 +519,8 @@ CREATE TABLE IF NOT EXISTS `yzn_tags_relation` (
 --
 
 INSERT INTO `yzn_tags_relation` (`tag_id`, `topics_id`) VALUES
+(30, 138),
+(29, 137),
 (28, 135),
 (27, 129),
 (26, 129),
@@ -488,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `yzn_topics` (
   `edit_time` int(10) unsigned NOT NULL COMMENT '修改时间',
   `reply_time` int(10) unsigned NOT NULL COMMENT '回复时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=137 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=139 ;
 
 --
 -- 转存表中的数据 `yzn_topics`
@@ -498,15 +560,17 @@ INSERT INTO `yzn_topics` (`id`, `uid`, `cid`, `nid`, `title`, `tags`, `content`,
 (15, 8, 2, 4, 'MarkDown语法测试', '', '## 大标题 ##\r\n### 小标题 ###\r\n\r\n*斜体文本* \r\n**粗体文本** \r\n***粗斜体文本*** \r\n\r\n文字链接 [链接名称](http://链接网址)\r\n网址链接 &lt;http://链接网址&gt;\r\n\r\n&gt; 引用文本前使用 [大于号+空格]\r\n&gt; 折行可以不加，新起一行都要加上哦\r\n\r\n&gt; 最外层引用\r\n&gt; &gt; 多一个 &gt; 嵌套一层引用\r\n&gt; &gt; &gt; 可以嵌套很多层\r\n\r\n&gt; - 这是引用里嵌套的一个列表\r\n&gt; - 还可以有子列表\r\n&gt;     * 子列表需要从 - 之后延后四个空格开始\r\n\r\n```\r\n代码块\r\n```\r\n\r\n---\r\n', 2, 0, 2, 0, 1458624693, 0, 1458631963),
 (23, 2, 7, 4, '这里测试@功能', 'member', '@&lt;a href=&quot;/member/int64ago&quot;&gt;int64ago&lt;/a&gt;', 8, 0, 0, 0, 1458631986, 0, 1459238543),
 (24, 2, 0, 4, '这里是回帖帖60秒限制测试', '', '这里是回帖60秒限制测试\r\n', 0, 0, 1, 0, 1458637635, 0, 1458637635),
-(25, 2, 0, 10, '本论坛【测试源码】下载', '下载地址,源码下载,服务器,管理员,图片', '#说明\r\n------\r\n采用最新TP3.2.3框架\r\n使用sae作为服务器\r\n注册地址http://t.cn/R4ppkMF\r\nhttp://2.yznbbs.applinzi.com/不在维护\r\n后台暂时不做 因为暂时没有好看的后台（差不多前台稳定在做）\r\n\r\n#目前功能：（未完全完善）\r\n-------\r\n发帖 回帖 编辑 移动\r\n@功能\r\n未读提醒功能\r\n60秒回帖限制\r\nmarkdown语法支持\r\n会员基础信息修改（密码 签名等）\r\n节点支持\r\n主题收藏 \r\n自动标签分词（DZ分词服务）\r\n置顶\r\n标签页面\r\n每个节点页面加载不同背景\r\n金币获取 通过发帖 回帖等方式\r\n活跃度 积分 财富排行榜 \r\n用户头衔\r\n\r\n#后期功能（）\r\n-------\r\n~~关注用户~~\r\n~~管理后台~~\r\n~~附言~~\r\n~~赞 踩~~\r\n~~头像上传  附件上传  图片上传~~\r\n~~悬赏~~\r\n~~路由功能~~\r\n~~各类插件~~\r\n~~时间轴~~\r\n~~商城~~\r\n~~帖子置顶 隐藏~~\r\n~~节点查看 回复限制~~\r\n~~管理员 版主支持~~\r\n~~举报~~\r\n~~第三方登录~~\r\n~~等级制度~~\r\n~~友情链接~~\r\n~~热门标签~~\r\n.....\r\n\r\n#下载地址\r\n------\r\ngithub地址：https://github.com/ken678/yznbbs\r\n\r\n\r\n\r\n', 0, 0, 2, 1, 1458703742, 0, 1458703742),
+(25, 2, 0, 10, '本论坛【测试源码】下载', '下载地址,源码下载,服务器,管理员,图片', '#说明\r\n------\r\n采用最新TP3.2.3框架\r\n使用sae作为服务器\r\n注册地址http://t.cn/R4ppkMF\r\nhttp://2.yznbbs.applinzi.com/不在维护\r\n后台暂时不做 因为暂时没有好看的后台（差不多前台稳定在做）\r\n\r\n#目前功能：（未完全完善）\r\n-------\r\n发帖 回帖 编辑 移动\r\n@功能\r\n未读提醒功能\r\n60秒回帖限制\r\nmarkdown语法支持\r\n会员基础信息修改（密码 签名等）\r\n节点支持\r\n主题收藏 \r\n自动标签分词（DZ分词服务）\r\n每个节点页面加载不同背景\r\n金币获取 通过发帖 回帖等方式\r\n活跃度 积分 财富排行榜 \r\n用户头衔 等级详细升级进度\r\n帖子置顶 隐藏\r\n行为限制 如回帖时间 发帖时间等\r\n\r\n\r\n#后期功能（）\r\n-------\r\n~~关注用户~~\r\n~~管理后台~~\r\n~~附言~~\r\n~~赞 踩~~\r\n~~头像上传  附件上传  图片上传~~\r\n~~悬赏~~\r\n~~路由功能~~\r\n~~时间轴~~\r\n~~节点查看 回复限制~~\r\n~~管理员 版主支持~~\r\n~~举报~~\r\n~~第三方登录~~\r\n~~友情链接~~\r\n~~热门标签~~\r\n.....\r\n\r\n# 插件\r\n签到插件\r\n......\r\n\r\n# 模块\r\n商城模块\r\n......\r\n\r\n#下载地址\r\n------\r\ngithub地址：https://github.com/ken678/yznbbs\r\n\r\n\r\n', 0, 0, 2, 1, 1458703742, 0, 1458703742),
 (26, 7, 2, 10, '这里测试@功能', '', '这里测试@功能这里测试@功能这里测试@功能这里测试@功能这里测试@功能这里测试@功能这里测试@功能', 14, 0, 1, 0, 1458715486, 0, 1459159007),
 (70, 2, 2, 4, '测试在线中文分词、关键词提取服务', '关键词,服务器,在线,中文,项目', '不同于使用自己的服务器进行分词，Discuz!在线中文分词服务是基于API返回分词结果的。在项目中，我们只需要一个函数即可方便地进行分词、关键词提取', 1, 0, 0, 0, 1459230799, 0, 1459232810),
-(72, 2, 16, 10, 'YznBBS安装说明', '数据库,mysql,新建', '##sae安装使用教程##\r\n1.sae点击创建应用，使用php5.6\r\n2.代码管理 选择创建版本 并**上传代码包**\r\n3.初始化共享型mysql 新建yzb_bbs表 然后导入**app_yznbbs.sql**\r\n4.初始化**KVDB**和**Memcache**\r\n\r\n##本地安装使用教程##\r\n1.新建yzb_bbs表 然后导入**app_yznbbs.sql**\r\n2.修改config_db.php里面的数据库配置即可.', 3, 0, 0, 1, 1459302598, 0, 1459850688),
+(72, 2, 16, 10, 'YznBBS安装说明', '数据库,mysql,新建', '##sae安装使用教程##\r\n1.sae点击创建应用，使用php5.6\r\n2.代码管理 选择创建版本 并**上传代码包**\r\n3.初始化共享型mysql 新建yzb_bbs表 然后导入**app_yznbbs.sql**\r\n4.初始化**KVDB**和**Memcache**\r\n\r\n##本地安装使用教程##\r\n1.新建yzb_bbs表 然后导入**app_yznbbs.sql**\r\n2.修改config_db.php里面的数据库配置即可.', 3, 0, 1, 1, 1459302598, 0, 1459850688),
 (86, 2, 0, 5, '页面美化测试 每个节点样式都不一样哦！！', '', '页面美化测试 每个节点样式都不一样哦！！', 0, 0, 0, 0, 1459329712, 0, 1459329712),
-(93, 2, 7, 10, '测试发帖获取铜币功能', '', '每次发帖可以获得5铜币 每天上限为5次\r\n回帖可以获得1铜币 无次数限制\r\n并且增加获取铜币的详细报表\r\n\r\n后续增加更多的得铜币途径', 9, 0, 0, 0, 1459491838, 0, 1459912396),
+(93, 2, 7, 10, '测试发帖获取铜币功能', '', '每次发帖可以获得5铜币 每天上限为5次\r\n回帖可以获得1铜币 无次数限制\r\n并且增加获取铜币的详细报表\r\n\r\n后续增加更多的得铜币途径', 9, 0, 1, 0, 1459491838, 0, 1459912396),
 (97, 14, 2, 4, '这是什么东东啊', '', '搞毛啊？', 1, 0, 0, 0, 1459620217, 0, 1459651709),
+(137, 2, 0, 10, '过几天制作后台 暂定Amaze Ui', '制作', 'http://yznbbs.applinzi.com/admin.php', 0, 0, 0, 0, 1460517957, 0, 1460517957),
 (135, 2, 2, 10, '新增发帖回帖限制表', '模型', '新增发帖回帖限制表\r\n行为模型 频率 时间 处罚\r\n\r\n发帖为1分钟 发一次 无处罚 \r\n回帖为30秒 发一次 无处罚\r\n', 2, 0, 0, 0, 1460362057, 0, 1460366825),
-(129, 7, 2, 10, '新增等级进度条 可以显示很多信息', 'forum,图片,信息', '![图片名称](http://att.125.la/data/attachment/forum/201604/06/160002vlqzacaqkamthztl.png)', 28, 0, 0, 0, 1459929728, 0, 1460368310),
+(129, 7, 2, 10, '新增等级进度条 可以显示很多信息', 'forum,图片,信息', '![图片名称](http://att.125.la/data/attachment/forum/201604/06/160002vlqzacaqkamthztl.png)', 34, 0, 1, 0, 1459929728, 0, 1460538536),
 (127, 7, 0, 10, '新增财富排行榜 积分排行榜 更新度不高 使用全局静态缓存', '财富排行榜', 'http://yznbbs.applinzi.com/Top/rich.html\r\nhttp://yznbbs.applinzi.com/Top/score.html', 0, 0, 1, 0, 1459848062, 0, 1459848062),
 (128, 2, 0, 10, '新增积分 用户头衔 铜币获取规则改为积分获取', '', '铜币发帖回帖不在获取 以后通过活动获取签到之类的方式获取\r\n积分可以通过发帖回帖等常规途径增长 \r\n\r\n会员头衔&amp;经验值对照表\r\n0                Lv1       一介凡人\r\n10              Lv2       初闻仙道\r\n50              Lv3       筑基小成\r\n100            Lv4       结丹修士\r\n200            Lv5       元婴老怪\r\n400            Lv6       化神传说\r\n600            Lv7       炼神返虚\r\n800            Lv8       合体尊者\r\n1000          Lv9       九天大乘\r\n2000          Lv10     渡劫飞升\r\n3000          Lv11     玄天真灵\r\n6000          Lv12     真仙降临\r\n10000        Lv13     掌刑仙尊\r\n18000        Lv14     万域仙皇\r\n30000        Lv15     不灭金仙\r\n60000        Lv16     轮回道祖\r\n100000      Lv17     寿与天齐\r\n300000      Lv18     南柯一梦', 0, 0, 0, 0, 1459904674, 0, 1459904674),
-(85, 2, 0, 10, '测试标签页面 点击帖子下方标签可进入 查看所属标题的帖子', '标签', '测试标签页面 点击帖子下方标签可进入 查看所属标题的帖子 ', 0, 0, 0, 0, 1459321629, 0, 1459321629);
+(85, 2, 0, 10, '测试标签页面 点击帖子下方标签可进入 查看所属标题的帖子', '标签', '测试标签页面 点击帖子下方标签可进入 查看所属标题的帖子 ', 0, 0, 0, 0, 1459321629, 0, 1459321629),
+(138, 7, 0, 10, '新增友情链接 ', '友情链接', '新增友情链接', 0, 0, 0, 0, 1460613138, 0, 1460613138);

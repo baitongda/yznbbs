@@ -93,6 +93,16 @@ function is_login(){
 }
 
 /**
+ * 检测当前用户是否为管理员
+ * @return boolean true-管理员，false-非管理员
+ * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ */
+function is_administrator($uid = null){
+    $uid = is_null($uid) ? is_login() : $uid;
+    return $uid && (intval($uid) === C('USER_ADMINISTRATOR'));
+}
+
+/**
  * 根据ID获取板块名
  * @param  integer $id 用户ID
  * @return string       用户名
